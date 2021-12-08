@@ -11,6 +11,6 @@ export class Tab1Page {
   constructor() {}
 
   click=(val)=>{
-    if(this.turn==1)
+    //if(this.turn==1)
   }
 }
