@@ -1,6 +1,3 @@
-import {Observable} from '../app/shared/classes/observable';
-import {TicTacToe} from '../app/shared/classes/tictactoe';
-
 QUnit.test('TicTacToe prototype - method existance', function(assert) {
   assert.equal(typeof TicTacToe.prototype.play, 'function');
   assert.equal(typeof TicTacToe.prototype.reset, 'function');
@@ -19,7 +16,7 @@ QUnit.test('TicTacToe inherit from Observable', function(assert) {
 QUnit.test('TicTacToe constructor', function(assert) {
 	let game = new TicTacToe();
     let observable = new Observable();
-
+    
     assert.ok(Object.keys(observable).every(key => game[key]));
 
 	assert.equal(game.currentPlayer, 0);
