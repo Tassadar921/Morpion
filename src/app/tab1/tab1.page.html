@@ -8,18 +8,47 @@
 
 <ion-grid>
   <ion-row>
-    <ion-col id="1" (click)="click(1)"></ion-col>
-    <ion-col id="2" (click)="click(2)"></ion-col>
-    <ion-col id="3" (click)="click(3)"></ion-col>
+    <ion-col id="1" (click)="click(0,0)">
+      <img src="../../assets/pics/1.jpg" *ngIf="matrix[0][0]===1">
+      <img src="../../assets/pics/2.jpg" *ngIf="matrix[0][0]===2">
+    </ion-col>
+    <ion-col id="2" (click)="click(0,1)">
+      <img src="../../assets/pics/1.jpg" *ngIf="matrix[0][1]===1">
+      <img src="../../assets/pics/2.jpg" *ngIf="matrix[0][1]===2">
+    </ion-col>
+    <ion-col id="3" (click)="click(0,2)">
+      <img src="../../assets/pics/1.jpg" *ngIf="matrix[0][2]===1">
+      <img src="../../assets/pics/2.jpg" *ngIf="matrix[0][2]===2">
+    </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col id="4" (click)="click(4)"></ion-col>
-    <ion-col id="5" (click)="click(5)"></ion-col>
-    <ion-col id="6" (click)="click(6)"></ion-col>
+    <ion-col id="4" (click)="click(1,0)">
+      <img src="../../assets/pics/1.jpg" *ngIf="matrix[1][0]===1">
+      <img src="../../assets/pics/2.jpg" *ngIf="matrix[1][0]===2">
+    </ion-col>
+    <ion-col id="5" (click)="click(1,1)">
+      <img src="../../assets/pics/1.jpg" *ngIf="matrix[1][1]===1">
+      <img src="../../assets/pics/2.jpg" *ngIf="matrix[1][1]===2">
+    </ion-col>
+    <ion-col id="6" (click)="click(1,2)">
+      <img src="../../assets/pics/1.jpg" *ngIf="matrix[1][2]===1">
+      <img src="../../assets/pics/2.jpg" *ngIf="matrix[1][2]===2">
+    </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col id="7" (click)="click(7)"></ion-col>
-    <ion-col id="8" (click)="click(8)"></ion-col>
-    <ion-col id="9" (click)="click(9)"></ion-col>
+    <ion-col id="7" (click)="click(2,0)">
+      <img src="../../assets/pics/1.jpg" *ngIf="matrix[2][0]===1">
+      <img src="../../assets/pics/2.jpg" *ngIf="matrix[2][0]===2">
+    </ion-col>
+    <ion-col id="8" (click)="click(2,1)">
+      <img src="../../assets/pics/1.jpg" *ngIf="matrix[2][1]===1">
+      <img src="../../assets/pics/2.jpg" *ngIf="matrix[2][1]===2">
+    </ion-col>
+    <ion-col id="9" (click)="click(2,2)">
+      <img src="../../assets/pics/1.jpg" *ngIf="matrix[2][2]===1">
+      <img src="../../assets/pics/2.jpg" *ngIf="matrix[2][2]===2">
+    </ion-col>
   </ion-row>
 </ion-grid>
+
+<p id="test"></p>
