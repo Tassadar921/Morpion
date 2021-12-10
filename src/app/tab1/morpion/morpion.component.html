@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Morpion
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<button (click)="reset()">Reset</button>
+
+<ion-grid>
+  <ion-row>
+    <ion-col (click)="click(0,0)">
+      <img src={{p1.pic}} *ngIf="matrix[0][0]===1">
+      <img src={{p2.pic}} *ngIf="matrix[0][0]===2">
+    </ion-col>
+    <ion-col (click)="click(0,1)">
+      <img src={{p1.pic}} *ngIf="matrix[0][1]===1">
+      <img src={{p2.pic}} *ngIf="matrix[0][1]===2">
+    </ion-col>
+    <ion-col (click)="click(0,2)">
+      <img src={{p1.pic}} *ngIf="matrix[0][2]===1">
+      <img src={{p2.pic}} *ngIf="matrix[0][2]===2">
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col (click)="click(1,0)">
+      <img src={{p1.pic}} *ngIf="matrix[1][0]===1">
+      <img src={{p2.pic}} *ngIf="matrix[1][0]===2">
+    </ion-col>
+    <ion-col (click)="click(1,1)">
+      <img src={{p1.pic}} *ngIf="matrix[1][1]===1">
+      <img src={{p2.pic}} *ngIf="matrix[1][1]===2">
+    </ion-col>
+    <ion-col (click)="click(1,2)">
+      <img src={{p1.pic}} *ngIf="matrix[1][2]===1">
+      <img src={{p2.pic}} *ngIf="matrix[1][2]===2">
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col (click)="click(2,0)">
+      <img src={{p1.pic}} *ngIf="matrix[2][0]===1">
+      <img src={{p2.pic}} *ngIf="matrix[2][0]===2">
+    </ion-col>
+    <ion-col (click)="click(2,1)">
+      <img src={{p1.pic}} *ngIf="matrix[2][1]===1">
+      <img src={{p2.pic}} *ngIf="matrix[2][1]===2">
+    </ion-col>
+    <ion-col (click)="click(2,2)">
+      <img src={{p1.pic}} *ngIf="matrix[2][2]===1">
+      <img src={{p2.pic}} *ngIf="matrix[2][2]===2">
+    </ion-col>
+  </ion-row>
+</ion-grid>

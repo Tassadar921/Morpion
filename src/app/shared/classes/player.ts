@@ -1,11 +1,11 @@
 export class Player {
   public id;
   public name;
-  public pic = new Image(100,100);
+  public pic;
 
   constructor(id, name, picURL){
     this.id=id;
     this.name=name;
-    this.pic.src=picURL;
+    this.pic=picURL;
   }
 }

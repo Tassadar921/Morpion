@@ -1,54 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Morpion
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-segment value="1">
+  <ion-segment-button value="1" (click)="switch(1)">Choix des perso</ion-segment-button>
+  <ion-segment-button value="0" (click)="switch(0)">Jeu</ion-segment-button>
+</ion-segment>
 
-<ion-grid>
-  <ion-row>
-    <ion-col id="1" (click)="click(0,0)">
-      <img src="../../assets/pics/1.jpg" *ngIf="matrix[0][0]===1">
-      <img src="../../assets/pics/2.jpg" *ngIf="matrix[0][0]===2">
-    </ion-col>
-    <ion-col id="2" (click)="click(0,1)">
-      <img src="../../assets/pics/1.jpg" *ngIf="matrix[0][1]===1">
-      <img src="../../assets/pics/2.jpg" *ngIf="matrix[0][1]===2">
-    </ion-col>
-    <ion-col id="3" (click)="click(0,2)">
-      <img src="../../assets/pics/1.jpg" *ngIf="matrix[0][2]===1">
-      <img src="../../assets/pics/2.jpg" *ngIf="matrix[0][2]===2">
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col id="4" (click)="click(1,0)">
-      <img src="../../assets/pics/1.jpg" *ngIf="matrix[1][0]===1">
-      <img src="../../assets/pics/2.jpg" *ngIf="matrix[1][0]===2">
-    </ion-col>
-    <ion-col id="5" (click)="click(1,1)">
-      <img src="../../assets/pics/1.jpg" *ngIf="matrix[1][1]===1">
-      <img src="../../assets/pics/2.jpg" *ngIf="matrix[1][1]===2">
-    </ion-col>
-    <ion-col id="6" (click)="click(1,2)">
-      <img src="../../assets/pics/1.jpg" *ngIf="matrix[1][2]===1">
-      <img src="../../assets/pics/2.jpg" *ngIf="matrix[1][2]===2">
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col id="7" (click)="click(2,0)">
-      <img src="../../assets/pics/1.jpg" *ngIf="matrix[2][0]===1">
-      <img src="../../assets/pics/2.jpg" *ngIf="matrix[2][0]===2">
-    </ion-col>
-    <ion-col id="8" (click)="click(2,1)">
-      <img src="../../assets/pics/1.jpg" *ngIf="matrix[2][1]===1">
-      <img src="../../assets/pics/2.jpg" *ngIf="matrix[2][1]===2">
-    </ion-col>
-    <ion-col id="9" (click)="click(2,2)">
-      <img src="../../assets/pics/1.jpg" *ngIf="matrix[2][2]===1">
-      <img src="../../assets/pics/2.jpg" *ngIf="matrix[2][2]===2">
-    </ion-col>
-  </ion-row>
-</ion-grid>
+<ion-content style="text-align:center;" *ngIf="tab==1">
+  <app-choix></app-choix>
+</ion-content>
 
-<p id="test"></p>
+<ion-content style="text-align:center;" *ngIf="tab==0">
+  <app-morpion></app-morpion>
+</ion-content>

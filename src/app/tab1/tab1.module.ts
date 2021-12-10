@@ -7,6 +7,10 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 
+import {MorpionComponent} from './morpion/morpion.component';
+
+import {ChoixComponent} from './choix/choix.component';
+
 @NgModule({
   imports: [
     IonicModule,
@@ -15,6 +19,6 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
     ExploreContainerComponentModule,
     Tab1PageRoutingModule
   ],
-  declarations: [Tab1Page]
+  declarations: [Tab1Page, MorpionComponent, ChoixComponent]
 })
 export class Tab1PageModule {}
