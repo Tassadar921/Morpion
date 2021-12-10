@@ -3,10 +3,10 @@
   <ion-segment-button value="0" (click)="switch(0)">Jeu</ion-segment-button>
 </ion-segment>
 
-<ion-content style="text-align:center;" *ngIf="tab==1">
+<ion-content style="text-align:center;" *ngIf="tab===1">
   <app-choix></app-choix>
 </ion-content>
 
-<ion-content style="text-align:center;" *ngIf="tab==0">
+<ion-content style="text-align:center;" *ngIf="tab===0">
   <app-morpion></app-morpion>
 </ion-content>
