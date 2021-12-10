@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  public tab=1;
+  public tab=0;
 
   switch=(val)=>{
     this.tab=val;

@@ -12,8 +12,8 @@ export class MorpionComponent {
   public p1;
   public p2;
   public end=0;
-  public choice1='1.jpg';
-  public choice2='2.jpg';
+  public choice1='Bowser.png';
+  public choice2='Kirby.png';
   public win=[];
 
   public matrix=
@@ -24,8 +24,8 @@ export class MorpionComponent {
     ];
 
   constructor() {
-    this.p1=new Player('1','joueur1', '../../assets/pics/'+this.choice1);
-    this.p2=new Player('2','joueur2', '../../assets/pics/'+this.choice2);
+    this.p1=new Player('1','Paul', '../../assets/pics/sprites_choix/'+this.choice1);
+    this.p2=new Player('2','Pierre', '../../assets/pics/sprites_choix/'+this.choice2);
   }
 
   click=(line, col)=>{
@@ -88,4 +88,8 @@ export class MorpionComponent {
       ];
   };
 
+  resolution=()=>{
+    if(screen.width>1010){return true;}
+    else{return false;}
+  };
 }

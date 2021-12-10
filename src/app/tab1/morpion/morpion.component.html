@@ -8,6 +8,18 @@
 
 <button (click)="reset()">Reset</button>
 
+<div id="p1" *ngIf="resolution()===true">
+  <h1>{{p1.name}}</h1>
+  <img class="turn" src="../../../assets/pics/turn_effect.png" *ngIf="currentPlayer===1">
+  <img src="{{p1.pic}}">
+</div>
+
+<div id="p2" *ngIf="resolution()===true">
+  <h1>{{p2.name}}</h1>
+  <img class="turn" src="../../../assets/pics/turn_effect.png" *ngIf="currentPlayer===2">
+  <img src="{{p2.pic}}">
+</div>
+
 <ion-grid>
   <ion-row>
     <ion-col (click)="click(0,0)">
@@ -52,3 +64,7 @@
     </ion-col>
   </ion-row>
 </ion-grid>
+
+<div >
+  <i></i>
+</div>
