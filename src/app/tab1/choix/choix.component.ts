@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Perso} from '../../shared/classes/perso';
+import { PersonnagesService} from '../../shared/services/personnages.service';
 
 @Component({
   selector: 'app-choix',
@@ -9,43 +9,39 @@ import {Perso} from '../../shared/classes/perso';
 export class ChoixComponent implements OnInit {
 
   public search='';
-  public paul=new Perso('paul','../../assets/pics/1.jpg');
-  public nathan1=new Perso('nathan','../../assets/pics/2.jpg');
-  public nathan2=new Perso('nathan','../../assets/pics/2.jpg');
-  public nathan3=new Perso('nathan','../../assets/pics/2.jpg');
-  public nathan4=new Perso('nathan','../../assets/pics/2.jpg');
-  public nathan5=new Perso('nathan','../../assets/pics/2.jpg');
-  public nathan6=new Perso('nathan','../../assets/pics/2.jpg');
-  public nathan7=new Perso('nathan','../../assets/pics/2.jpg');
-  public data=
-    [
-      this.paul,
-      this.nathan1,
-      this.nathan2,
-      this.nathan3,
-      this.nathan4,
-      this.nathan5,
-      this.nathan6,
-      this.nathan6,
-      this.nathan6,
-      this.nathan6,
-      this.nathan7,
-      this.paul,
-      this.nathan1,
-      this.nathan2,
-      this.nathan3,
-      this.nathan4,
-      this.nathan5,
-      this.nathan6,
-      this.nathan6,
-      this.nathan6,
-      this.nathan6,
-      this.nathan7
-    ];
-  public listPerso
-  constructor() {}
+  public listPerso;
+
+  constructor(
+    private data: PersonnagesService,
+  ) {}
 
   ngOnInit() {
+    this.listPerso=this.data.getData();
   }
+
+  select=(choix)=>{
+    console.log(choix);
+  };
+
+  onKeypressEvent=(filter: any)=>{
+    for(const line of this.listPerso){
+      if(!line.name.toUpperCase().includes(filter.target.value.toUpperCase())){
+        line.show=false;
+      }
+      else{line.show=true;}
+    }
+  };
+
+  displayReset=()=>{
+    for(const line of this.listPerso){
+      if(line.show===false){
+        line.show=true;
+      }
+    }
+  };
+
+  trigger=()=>{
+
+  };
 
 }
