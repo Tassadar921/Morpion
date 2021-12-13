@@ -12,6 +12,6 @@ export class Tab3Page {
 
   redirect=()=>{
     window.open('../../assets/redirect/test.html');
-  }
+  };
 
 }

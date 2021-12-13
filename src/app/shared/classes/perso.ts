@@ -3,9 +3,9 @@ export class Perso {
   public pic;
   public show;
 
-  constructor(name, picURL, show){
+  constructor(name, picURL){
     this.name=name;
     this.pic=picURL;
-    this.show=show;
+    this.show=true;
   }
 }

@@ -27,7 +27,7 @@ button:hover{
   border:solid 1px #C3C3C3;
   font-size:1.4em;
   background-color:#66635E;
-
+  margin:13px;
 }
 
 img{
@@ -54,16 +54,6 @@ img{
   margin-right:100px;
 }
 
-#p1 .turn, #p2 .turn{
-  position:absolute;
-  width:390px;
-  top:200px;
-}
-
-#p1 .turn{
-  left:12px;
-}
-
-#p2 .turn{
-  right:12px;
+.glow{
+  filter: drop-shadow(0 0 0.75rem rgb(8, 142, 144));
 }

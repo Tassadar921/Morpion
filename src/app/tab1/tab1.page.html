@@ -1,12 +1,26 @@
-<ion-segment value="1">
-  <ion-segment-button value="1" (click)="switch(1)">Choix des perso</ion-segment-button>
-  <ion-segment-button value="0" (click)="switch(0)">Jeu</ion-segment-button>
-</ion-segment>
+<ion-content>
+  <div id="form" *ngIf="!glob.getNick1() || !glob.getNick2()">
 
-<ion-content style="text-align:center;" *ngIf="tab===1">
-  <app-choix></app-choix>
-</ion-content>
+      <h1>Player 1 :</h1>
+      <input id="input1" type="text" placeholder="Nickname player 1" [(ngModel)]="p1">
 
-<ion-content style="text-align:center;" *ngIf="tab===0">
-  <app-morpion></app-morpion>
+      <h1>Player 2 :</h1>
+      <input id="input2" type="text" placeholder="Nickname player 2" [(ngModel)]="p2"><br>
+
+    <ion-button (click)="submit();">Submit</ion-button>
+    <p>{{error}}</p>
+  </div>
+
+  <div *ngIf="glob.getNick1() && glob.getNick2()">
+    <ion-segment value="1">
+      <ion-segment-button value="1" (click)="switch(1)">Choix des perso</ion-segment-button>
+      <ion-segment-button value="0" (click)="switch(0)">Jeu</ion-segment-button>
+    </ion-segment>
+
+
+    <app-choix style="text-align:center;" *ngIf="tab===1"></app-choix>
+    <app-morpion style="text-align:center;" *ngIf="tab===0"></app-morpion>
+
+
+  </div>
 </ion-content>

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import {Player} from '../../shared/classes/player';
+import { Component, OnInit} from '@angular/core';
+import { Player } from '../../shared/classes/player';
+import { GlobalVarsService} from '../../shared/services/global-vars.service';
 
 @Component({
   selector: 'app-morpion',
@@ -12,8 +13,6 @@ export class MorpionComponent {
   public p1;
   public p2;
   public end=0;
-  public choice1='Bowser.png';
-  public choice2='Kirby.png';
   public win=[];
 
   public matrix=
@@ -23,9 +22,11 @@ export class MorpionComponent {
       [0,0,0]
     ];
 
-  constructor() {
-    this.p1=new Player('1','Paul', '../../assets/pics/sprites_choix/'+this.choice1);
-    this.p2=new Player('2','Pierre', '../../assets/pics/sprites_choix/'+this.choice2);
+  constructor(
+    private glob: GlobalVarsService,
+  ) {
+    this.p1=new Player('1',this.glob.getNick1(), this.glob.getPic1());
+    this.p2=new Player('2',this.glob.getNick2(), this.glob.getPic2());
   }
 
   click=(line, col)=>{
@@ -39,25 +40,29 @@ export class MorpionComponent {
 
   endTurn=()=>{
     this.win=this.checking();
-    if(this.currentPlayer===1){this.currentPlayer+=1;}
-    else{this.currentPlayer=1;}
+    if(this.currentPlayer===1){
+      this.currentPlayer+=1;
+      document.getElementById('pic2').setAttribute('class','glow');
+      document.getElementById('pic1').removeAttribute('class');
+    } else{
+      this.currentPlayer-=1;
+      document.getElementById('pic1').setAttribute('class','glow');
+      document.getElementById('pic2').removeAttribute('class');
+    }
   };
 
   checking=()=>{
     const tmp=[];
-    console.log(this.matrix);
     for(let i=0;i<3;i++) {
       if (this.matrix[i][0] !== 0 && this.matrix[i][1] !== 0 && this.matrix[i][2] !== 0 && this.matrix[i][0] === this.matrix[i][1] && this.matrix[i][0] === this.matrix[i][2]) {
         this.end = 1;
         tmp[0] = 'ligne';
         tmp[1] = i;
-        console.log(tmp);
       } else {
         if (this.matrix[0][i] !== 0 && this.matrix[1][i] !== 0 && this.matrix[2][i] !== 0 && this.matrix[0][i] === this.matrix[1][i] && this.matrix[0][i] === this.matrix[2][i]) {
           this.end = 1;
           tmp[0] = 'colonne';
           tmp[1] = i;
-          console.log(tmp);
         }
         }
       }
@@ -65,15 +70,14 @@ export class MorpionComponent {
       this.end = 1;
       tmp[0] = 'diagonale';
       tmp[1] = 'hautGauche';
-      console.log(tmp);
     } else {
       if (this.matrix[0][2] !== 0 && this.matrix[1][1] !== 0 && this.matrix[2][0] !== 0 && this.matrix[0][2] === this.matrix[1][1] && this.matrix[0][2] === this.matrix[2][0]) {
         this.end = 1;
         tmp[0] = 'diagonale';
         tmp[1] = 'hautDroite';
-        console.log(tmp);
       }
     }
+    console.log(tmp);
     return tmp;
   };
 
@@ -86,6 +90,8 @@ export class MorpionComponent {
         [0,0,0],
         [0,0,0]
       ];
+    document.getElementById('pic1').setAttribute('class','glow');
+    document.getElementById('pic2').removeAttribute('class');
   };
 
   resolution=()=>{

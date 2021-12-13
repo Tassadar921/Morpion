@@ -4,14 +4,49 @@ img{
   margin:15px;
 }
 
-img:hover{
-  width:120px;
-  height:120px;
-  border:solid 1px white;
+.loop:hover{
+  width:130px;
+  height:130px;
+  border:solid 2px white;
   cursor:pointer;
-  margin:5px;
+  margin:0px;
+  border-radius:65px;
 }
 
 div{
   display:inline;
+}
+
+ion-button{
+  width:18%;
+  margin-left:41%;
+}
+
+p{
+  font-size:1.3em;
+  text-decoration:underline;
+  margin:0;
+  margin-top:10px;
+}
+
+#p1{
+  float:left;
+}
+
+#p2{
+  float:right;
+}
+
+#p1, #p2{
+  border: solid 1px white;
+  width:200px;
+  height:250px;
+  img{
+    width:180px;
+    height:180px;
+  }
+}
+
+#err{
+  color:red;
 }
