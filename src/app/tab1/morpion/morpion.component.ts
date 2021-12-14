@@ -77,7 +77,6 @@ export class MorpionComponent {
         tmp[1] = 'hautDroite';
       }
     }
-    console.log(tmp);
     return tmp;
   };
 
@@ -92,10 +91,5 @@ export class MorpionComponent {
       ];
     document.getElementById('pic1').setAttribute('class','glow');
     document.getElementById('pic2').removeAttribute('class');
-  };
-
-  resolution=()=>{
-    if(screen.width>1010){return true;}
-    else{return false;}
   };
 }

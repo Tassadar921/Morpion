@@ -5,11 +5,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },  {
-    path: 'random',
-    loadChildren: () => import('./random/random.module').then( m => m.RandomPageModule)
-  }
-
+  },
 ];
 @NgModule({
   imports: [

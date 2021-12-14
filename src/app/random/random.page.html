@@ -1,8 +1,0 @@
-<ion-content>
-
-  <img src="../../assets/pics/sprites_choix/Bayonetta.png" id="glow">
-
-  <div *ngFor="let line of listPerso">
-    <img class="loop" src={{line.pic}} title={{line.name}} (click)="select(line.pic, line.name)" *ngIf="line.show===true">
-  </div>
-</ion-content>

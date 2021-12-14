@@ -4,7 +4,7 @@ img{
   margin:15px;
 }
 
-.loop:hover{
+.zoom:hover{
   width:130px;
   height:130px;
   border:solid 2px white;
@@ -31,10 +31,12 @@ p{
 
 #p1{
   float:left;
+  background-color:blue;
 }
 
 #p2{
   float:right;
+  background-color:red;
 }
 
 #p1, #p2{
@@ -49,4 +51,12 @@ p{
 
 #err{
   color:red;
+}
+
+#glow_red{
+  filter: drop-shadow(0 0 0.75rem rgb(255, 0, 0));
+}
+
+#glow_blue{
+  filter: drop-shadow(0 0 0.75rem rgb(67, 142, 228));
 }

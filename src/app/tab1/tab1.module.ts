@@ -7,8 +7,8 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 
+import {NicknamesComponent} from './nicknames/nicknames.component';
 import {MorpionComponent} from './morpion/morpion.component';
-
 import {ChoixComponent} from './choix/choix.component';
 
 @NgModule({
@@ -19,6 +19,6 @@ import {ChoixComponent} from './choix/choix.component';
     ExploreContainerComponentModule,
     Tab1PageRoutingModule
   ],
-  declarations: [Tab1Page, MorpionComponent, ChoixComponent]
+  declarations: [Tab1Page, NicknamesComponent, MorpionComponent, ChoixComponent]
 })
 export class Tab1PageModule {}

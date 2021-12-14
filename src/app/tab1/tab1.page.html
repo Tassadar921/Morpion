@@ -1,14 +1,6 @@
 <ion-content>
   <div id="form" *ngIf="!glob.getNick1() || !glob.getNick2()">
-
-      <h1>Player 1 :</h1>
-      <input id="input1" type="text" placeholder="Nickname player 1" [(ngModel)]="p1">
-
-      <h1>Player 2 :</h1>
-      <input id="input2" type="text" placeholder="Nickname player 2" [(ngModel)]="p2"><br>
-
-    <ion-button (click)="submit();">Submit</ion-button>
-    <p>{{error}}</p>
+    <app-nicknames></app-nicknames>
   </div>
 
   <div *ngIf="glob.getNick1() && glob.getNick2()">

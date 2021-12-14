@@ -5,11 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class GlobalVarsService {
 
-  public test='';
   public pic1='../../../assets/pics/sprites_choix/point_interrogation.png';
   public pic2='../../../assets/pics/sprites_choix/point_interrogation.png';
-  public nick1='a';
-  public nick2='b';
+  public nick1='';
+  public nick2='';
 
   constructor() { }
 
@@ -24,6 +23,5 @@ export class GlobalVarsService {
 
   getNick2=()=>this.nick2;
   setNick2=(replace)=>this.nick2=replace;
-
 
 }
