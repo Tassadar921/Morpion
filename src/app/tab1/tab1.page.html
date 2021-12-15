@@ -11,19 +11,19 @@
     </ion-segment>
 
 
-    <app-choix style="text-align:center;" *ngIf="tab===1"></app-choix>
-    <app-morpion style="text-align:center;" *ngIf="tab===0"></app-morpion>
+    <app-choix *ngIf="tab===1"></app-choix>
+    <app-morpion *ngIf="tab===0"></app-morpion>
   </div>
 
 </ion-content>
 
 <ion-footer>
   <ion-icon (click)="music.play()" name="musical-notes"></ion-icon>
-  <ion-icon (click)='sound.mute(true)' name="volume-mute" *ngIf="!music.muted"></ion-icon>
-  <ion-icon (click)='sound.mute(false)' name="volume-high" *ngIf="music.muted"></ion-icon>
   <ion-icon (click)='music.pause()' name="pause-circle" *ngIf="!music.paused"></ion-icon>
   <ion-icon (click)='music.play()' name="play-circle" *ngIf="music.paused"></ion-icon>
   <ion-icon (click)='sound.stop()' name="stop-circle"></ion-icon>
+  <ion-icon (click)='sound.mute(false)' name="volume-mute" *ngIf="music.muted"></ion-icon>
+  <ion-icon (click)='sound.mute(true)' name="volume-high" *ngIf="!music.muted"></ion-icon>
 
   <input type="range" min="0" max="0.25" step="0.0001" [(ngModel)]="volume" (change)="sound.setVolume(volume)">
 </ion-footer>

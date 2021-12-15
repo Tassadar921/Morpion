@@ -14,12 +14,11 @@ export class Tab1Page{
   public volume;
 
   constructor(
-    private glob: GlobalVarsService,
-    private sound: MusicService,
+    public glob: GlobalVarsService,
+    public sound: MusicService,
   ){}
 
   switch=(val)=>{
     this.tab=val;
-
   };
 }
