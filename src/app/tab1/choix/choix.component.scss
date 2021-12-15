@@ -31,12 +31,12 @@ p{
 
 #p1{
   float:left;
-  background-color:blue;
+  background-color:#438EE4;
 }
 
 #p2{
   float:right;
-  background-color:red;
+  background-color:#C72525;
 }
 
 #p1, #p2{
@@ -54,9 +54,9 @@ p{
 }
 
 #glow_red{
-  filter: drop-shadow(0 0 0.75rem rgb(255, 0, 0));
+  filter: drop-shadow(0 0 1rem rgb(199, 37, 37));
 }
 
 #glow_blue{
-  filter: drop-shadow(0 0 0.75rem rgb(67, 142, 228));
+  filter: drop-shadow(0 0 1rem rgb(67, 142, 228));
 }

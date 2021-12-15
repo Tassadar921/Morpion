@@ -1,26 +1,25 @@
-import { Component, OnInit} from '@angular/core';
+import { Component} from '@angular/core';
+
 import { GlobalVarsService } from '../shared/services/global-vars.service';
+import { MusicService} from '../shared/services/music.service';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page implements OnInit{
+export class Tab1Page{
   public tab=1;
-
-  public sound=new Audio('../../assets/music/Lifelight ( English Ver.) - Super Smash Bros. Ultimate Main Theme.mp3');
+  public music=this.sound.getSound();
+  public volume;
 
   constructor(
     private glob: GlobalVarsService,
+    private sound: MusicService,
   ){}
-
-  ngOnInit() {
-    this.sound.volume=0.1;
-    this.sound.play();
-  }
 
   switch=(val)=>{
     this.tab=val;
+
   };
 }
