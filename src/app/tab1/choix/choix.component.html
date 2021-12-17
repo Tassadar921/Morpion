@@ -1,16 +1,19 @@
 <ion-searchbar id="search" [(ngModel)]="input" showCancelButton="always" (keyup)="onKeypressEvent($event)" (ionClear)="displayReset()"></ion-searchbar>
 
-<ion-button (click)="reinit()">Réinitialiser choix</ion-button><br>
+  <ion-button (click)="reinit()">Réinitialiser choix</ion-button>
+
 <p id="err">{{error}}</p>
 
 <div id="p1">
   <p>{{glob.getNick1()}}</p>
   <img src={{glob.getPic1()}}>
+  <button (click)="resetP1()">Changer</button>
 </div>
 
 <div id="p2">
   <p>{{glob.getNick2()}}</p>
   <img src={{glob.getPic2()}}>
+  <button (click)="resetP2()">Changer</button>
 </div>
 
 <div *ngFor="let line of listPerso">

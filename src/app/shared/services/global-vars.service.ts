@@ -14,9 +14,11 @@ export class GlobalVarsService {
 
   getPic1=()=>this.pic1;
   setPic1=(replace)=>this.pic1=replace;
+  resetPic1=()=>this.pic1='../../../assets/pics/sprites_choix/point_interrogation.png';
 
   getPic2=()=>this.pic2;
-  setPic2=(replace)=>this.pic2=replace;
+  setPic2=(replace)=>this.pic2=replace
+  resetPic2=()=>this.pic2='../../../assets/pics/sprites_choix/point_interrogation.png';
 
   getNick1=()=>this.nick1;
   setNick1=(replace)=>this.nick1=replace;
