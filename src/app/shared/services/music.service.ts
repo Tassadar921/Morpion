@@ -20,9 +20,7 @@ export class MusicService {
   };
 
   play=()=>{
-    if(this.sound.ended) {
-      this.sound.play();
-    }
+    this.sound.play();
   };
 
   mute=(bool)=>{
