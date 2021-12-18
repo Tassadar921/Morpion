@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, AfterViewInit, OnInit} from '@angular/core';
 import { Player } from '../../shared/classes/player';
 import { GlobalVarsService} from '../../shared/services/global-vars.service';
 
@@ -7,13 +7,14 @@ import { GlobalVarsService} from '../../shared/services/global-vars.service';
   templateUrl: './morpion.component.html',
   styleUrls: ['./morpion.component.scss'],
 })
-export class MorpionComponent {
+export class MorpionComponent implements AfterViewInit, OnInit{
 
   public currentPlayer=1;
   public p1;
   public p2;
   public end=0;
   public win=[];
+  public output;
 
   public matrix=
     [
@@ -28,6 +29,40 @@ export class MorpionComponent {
     this.p1=new Player('1',this.glob.getNick1(), this.glob.getPic1());
     this.p2=new Player('2',this.glob.getNick2(), this.glob.getPic2());
   }
+
+  ngOnInit() {
+    this.firstPlayer();
+  }
+
+  ngAfterViewInit() {
+    this.firstPlayerSprite();
+  }
+
+  firstPlayer=()=>{
+    this.currentPlayer=Math.floor(Math.random()*2)+1;
+
+    if(document.getElementsByClassName('glow')){
+      const tmp = document.getElementsByClassName('glow');
+      for(let i=0;i<tmp.length;i++){
+        tmp[i].removeAttribute('class');
+      }
+    }
+
+    if(this.currentPlayer===1){
+      this.output='Le marteau du destin a frappé : '+this.glob.getNick1()+' commencera';
+    }else{
+      this.output='Malheureusement pour '+this.glob.getNick2()+' ce sera '+this.glob.getNick1()+' qui commencera';
+    }
+
+  };
+
+  firstPlayerSprite=()=>{
+    if(this.currentPlayer===1){
+      document.getElementById('pic1').setAttribute('class','glow');
+    }else{
+      document.getElementById('pic2').setAttribute('class','glow');
+    }
+  };
 
   click=(line, col)=>{
     if(this.win.length===0) {
@@ -82,14 +117,13 @@ export class MorpionComponent {
 
   reset=()=>{
     this.win=[];
-    this.currentPlayer=1;
+    this.firstPlayer();
+    this.firstPlayerSprite();
     this.matrix=
       [
         [0,0,0],
         [0,0,0],
         [0,0,0]
       ];
-    document.getElementById('pic1').setAttribute('class','glow');
-    document.getElementById('pic2').removeAttribute('class');
   };
 }

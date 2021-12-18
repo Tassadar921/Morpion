@@ -1,12 +1,14 @@
 <div *ngIf="(this.glob.getPic1()!=='../../../assets/pics/sprites_choix/point_interrogation.png') && (this.glob.getPic2()!=='../../../assets/pics/sprites_choix/point_interrogation.png')">
 
-  <div>
+  <div style="margin-top:20px;">
     <ion-button shape="round" (click)="reset()">Reset</ion-button>
   </div>
 
+  <p id="output">{{output}}</p>
+
   <div id="p1">
     <h1>{{p1.name}}</h1>
-    <img id="pic1" class="glow" src="{{p1.pic}}">
+    <img id="pic1" src="{{p1.pic}}">
   </div>
 
   <div id="p2">
