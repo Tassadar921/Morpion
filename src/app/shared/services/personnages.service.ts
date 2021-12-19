@@ -8,7 +8,6 @@ export class PersonnagesService {
 
   public names=
     [
-      'Amphinobi',
       'Bayonetta',
       'Bowser',
       'Bowser Jr.',
@@ -80,6 +79,7 @@ export class PersonnagesService {
       'Yoshi',
       'Zelda',
       'Samus Without Suit',
+      'Greninja'
     ];
 
   public data=[];
