@@ -1,7 +1,8 @@
 import { Component, AfterViewInit, OnInit} from '@angular/core';
 import { Player } from '../../shared/classes/player';
 import { GlobalVarsService} from '../../shared/services/global-vars.service';
-import * as confetti from 'canvas-confetti';
+
+import {tsParticles} from 'tsparticles';
 
 @Component({
   selector: 'app-morpion',
@@ -37,17 +38,6 @@ export class MorpionComponent implements AfterViewInit, OnInit{
 
   ngAfterViewInit() {
     this.firstPlayerSprite();
-
-    confetti.create()({
-      shapes: ['square'],
-      particleCount: 100,
-      spread: 90,
-      origin: {
-        y: (1),
-        x: (0.5)
-      }
-    });
-    confetti.play();
   }
 
   firstPlayer=()=>{
@@ -138,6 +128,4 @@ export class MorpionComponent implements AfterViewInit, OnInit{
         [0,0,0]
       ];
   };
-
-
 }
