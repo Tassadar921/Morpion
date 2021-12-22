@@ -30,3 +30,7 @@
 <div *ngIf="(this.glob.getPic1()==='../../../assets/pics/sprites_choix/point_interrogation.png') || (this.glob.getPic2()==='../../../assets/pics/sprites_choix/point_interrogation.png')">
   <p>Veuillez choisir des personnages</p>
 </div>
+
+<div *ngFor="let element of loop" class="wrapper">
+  <div class="confetti-{{element}}"></div>
+</div>

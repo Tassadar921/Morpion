@@ -8,8 +8,10 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 
 import {NicknamesComponent} from './nicknames/nicknames.component';
-import {MorpionComponent} from './morpion/morpion.component';
 import {ChoixComponent} from './choix/choix.component';
+import {MorpionComponent} from './morpion/morpion.component';
+
+import{NgParticlesModule} from 'ng-particles';
 
 @NgModule({
   imports: [
@@ -17,8 +19,9 @@ import {ChoixComponent} from './choix/choix.component';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab1PageRoutingModule
+    Tab1PageRoutingModule,
+    NgParticlesModule
   ],
-  declarations: [Tab1Page, NicknamesComponent, MorpionComponent, ChoixComponent]
+  declarations: [Tab1Page, NicknamesComponent, ChoixComponent, MorpionComponent]
 })
 export class Tab1PageModule {}

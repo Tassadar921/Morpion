@@ -112,9 +112,6 @@ export class ChoixComponent implements OnInit {
           text: 'Non',
           icon: 'close',
           role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
         }]
       });
       await actionSheet.present();
@@ -139,9 +136,6 @@ export class ChoixComponent implements OnInit {
             text: 'Non',
             icon: 'close',
             role: 'cancel',
-            handler: () => {
-              console.log('Cancel clicked');
-            }
           }]
         });
         await actionSheet.present();

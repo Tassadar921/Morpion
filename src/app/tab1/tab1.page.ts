@@ -9,6 +9,7 @@ import { MusicService} from '../shared/services/music.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page{
+
   public tab=1;
   public music=this.sound.getSound();
   public volume;

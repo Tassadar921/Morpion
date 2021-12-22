@@ -1,8 +1,6 @@
-import { Component, AfterViewInit, OnInit} from '@angular/core';
-import { Player } from '../../shared/classes/player';
-import { GlobalVarsService} from '../../shared/services/global-vars.service';
-
-import {tsParticles} from 'tsparticles';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {GlobalVarsService} from '../../shared/services/global-vars.service';
+import {Player} from '../../shared/classes/player';
 
 @Component({
   selector: 'app-morpion',
@@ -17,7 +15,7 @@ export class MorpionComponent implements AfterViewInit, OnInit{
   public end=0;
   public win=[];
   public output;
-
+  public loop=[];
   public matrix=
     [
       [0,0,0],
@@ -34,6 +32,9 @@ export class MorpionComponent implements AfterViewInit, OnInit{
 
   ngOnInit() {
     this.firstPlayer();
+    for(let i=149;i>0;i--){
+      this.loop[149-i]=i;
+    }
   }
 
   ngAfterViewInit() {
@@ -59,10 +60,12 @@ export class MorpionComponent implements AfterViewInit, OnInit{
   };
 
   firstPlayerSprite=()=>{
-    if(this.currentPlayer===1){
-      document.getElementById('pic1').setAttribute('class','glow');
-    }else{
-      document.getElementById('pic2').setAttribute('class','glow');
+    if(this.glob.getPic1()!=='../../../assets/pics/sprites_choix/point_interrogation.png'&&this.glob.getPic2()!=='../../../assets/pics/sprites_choix/point_interrogation.png') {
+      if (this.currentPlayer === 1) {
+        document.getElementById('pic1').setAttribute('class', 'glow');
+      } else {
+        document.getElementById('pic2').setAttribute('class', 'glow');
+      }
     }
   };
 
@@ -95,24 +98,32 @@ export class MorpionComponent implements AfterViewInit, OnInit{
         this.end = 1;
         tmp[0] = 'ligne';
         tmp[1] = i;
+        this.glob.setWin(this.matrix[i][0]);
       } else {
         if (this.matrix[0][i] !== 0 && this.matrix[1][i] !== 0 && this.matrix[2][i] !== 0 && this.matrix[0][i] === this.matrix[1][i] && this.matrix[0][i] === this.matrix[2][i]) {
           this.end = 1;
           tmp[0] = 'colonne';
           tmp[1] = i;
-        }
+          this.glob.setWin(this.matrix[0][i]);
         }
       }
+    }
     if (this.matrix[0][0] !== 0 && this.matrix[1][1] !== 0 && this.matrix[2][2] !== 0 && this.matrix[0][0] === this.matrix[1][1] && this.matrix[0][0] === this.matrix[2][2]) {
       this.end = 1;
       tmp[0] = 'diagonale';
       tmp[1] = 'hautGauche';
+      this.glob.setWin(this.matrix[0][0]);
     } else {
       if (this.matrix[0][2] !== 0 && this.matrix[1][1] !== 0 && this.matrix[2][0] !== 0 && this.matrix[0][2] === this.matrix[1][1] && this.matrix[0][2] === this.matrix[2][0]) {
         this.end = 1;
         tmp[0] = 'diagonale';
         tmp[1] = 'hautDroite';
+        this.glob.setWin(this.matrix[0][2]);
       }
+    }
+    if(this.glob.getWin()!==0){
+      if(this.glob.getWin()===1){this.output='Honte à '+this.glob.getNick2()+', '+this.glob.getNick1()+' l\'a emporté';}
+      else{this.output=this.glob.getNick1()+' a été meilleur';}
     }
     return tmp;
   };
@@ -127,5 +138,8 @@ export class MorpionComponent implements AfterViewInit, OnInit{
         [0,0,0],
         [0,0,0]
       ];
+    this.glob.setWin(0);
+    console.log(this.glob.getWin());
   };
+
 }
