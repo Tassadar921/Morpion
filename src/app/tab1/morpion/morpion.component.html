@@ -31,6 +31,8 @@
   <p>Veuillez choisir des personnages</p>
 </div>
 
-<div *ngFor="let element of loop" class="wrapper">
-  <div class="confetti-{{element}}"></div>
+<div *ngIf="win.length!==0">
+  <div *ngFor="let element of loop" class="wrapper">
+    <div class="confetti-{{element}}"></div>
+  </div>
 </div>

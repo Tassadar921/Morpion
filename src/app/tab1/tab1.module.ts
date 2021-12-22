@@ -11,16 +11,13 @@ import {NicknamesComponent} from './nicknames/nicknames.component';
 import {ChoixComponent} from './choix/choix.component';
 import {MorpionComponent} from './morpion/morpion.component';
 
-import{NgParticlesModule} from 'ng-particles';
-
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab1PageRoutingModule,
-    NgParticlesModule
+    Tab1PageRoutingModule
   ],
   declarations: [Tab1Page, NicknamesComponent, ChoixComponent, MorpionComponent]
 })

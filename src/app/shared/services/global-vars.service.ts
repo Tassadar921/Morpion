@@ -7,8 +7,8 @@ export class GlobalVarsService {
 
   public pic1='../../../assets/pics/sprites_choix/point_interrogation.png';
   public pic2='../../../assets/pics/sprites_choix/point_interrogation.png';
-  public nick1='A';
-  public nick2='B';
+  public nick1='';
+  public nick2='';
   public win=0;
 
   constructor() {}

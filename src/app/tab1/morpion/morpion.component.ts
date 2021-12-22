@@ -12,7 +12,6 @@ export class MorpionComponent implements AfterViewInit, OnInit{
   public currentPlayer=1;
   public p1;
   public p2;
-  public end=0;
   public win=[];
   public output;
   public loop=[];
@@ -95,13 +94,11 @@ export class MorpionComponent implements AfterViewInit, OnInit{
     const tmp=[];
     for(let i=0;i<3;i++) {
       if (this.matrix[i][0] !== 0 && this.matrix[i][1] !== 0 && this.matrix[i][2] !== 0 && this.matrix[i][0] === this.matrix[i][1] && this.matrix[i][0] === this.matrix[i][2]) {
-        this.end = 1;
         tmp[0] = 'ligne';
         tmp[1] = i;
         this.glob.setWin(this.matrix[i][0]);
       } else {
         if (this.matrix[0][i] !== 0 && this.matrix[1][i] !== 0 && this.matrix[2][i] !== 0 && this.matrix[0][i] === this.matrix[1][i] && this.matrix[0][i] === this.matrix[2][i]) {
-          this.end = 1;
           tmp[0] = 'colonne';
           tmp[1] = i;
           this.glob.setWin(this.matrix[0][i]);
@@ -109,13 +106,11 @@ export class MorpionComponent implements AfterViewInit, OnInit{
       }
     }
     if (this.matrix[0][0] !== 0 && this.matrix[1][1] !== 0 && this.matrix[2][2] !== 0 && this.matrix[0][0] === this.matrix[1][1] && this.matrix[0][0] === this.matrix[2][2]) {
-      this.end = 1;
       tmp[0] = 'diagonale';
       tmp[1] = 'hautGauche';
       this.glob.setWin(this.matrix[0][0]);
     } else {
       if (this.matrix[0][2] !== 0 && this.matrix[1][1] !== 0 && this.matrix[2][0] !== 0 && this.matrix[0][2] === this.matrix[1][1] && this.matrix[0][2] === this.matrix[2][0]) {
-        this.end = 1;
         tmp[0] = 'diagonale';
         tmp[1] = 'hautDroite';
         this.glob.setWin(this.matrix[0][2]);
@@ -139,7 +134,6 @@ export class MorpionComponent implements AfterViewInit, OnInit{
         [0,0,0]
       ];
     this.glob.setWin(0);
-    console.log(this.glob.getWin());
   };
 
 }
