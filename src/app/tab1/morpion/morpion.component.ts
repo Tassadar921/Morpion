@@ -118,7 +118,7 @@ export class MorpionComponent implements AfterViewInit, OnInit{
     }
     if(this.glob.getWin()!==0){
       if(this.glob.getWin()===1){this.output='Honte à '+this.glob.getNick2()+', '+this.glob.getNick1()+' l\'a emporté';}
-      else{this.output=this.glob.getNick1()+' a été meilleur';}
+      else{this.output=this.glob.getNick2()+' a été meilleur';}
     }
     return tmp;
   };
