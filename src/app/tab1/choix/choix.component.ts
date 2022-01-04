@@ -28,7 +28,7 @@ export class ChoixComponent implements OnInit {
   }
 
   getPositionByName = (name) => {
-    let ajustment = 0; //on incrémente quand l'image n'est pas affichée
+    let ajustment = 0; //on incrémente quand l'image n'est pas affichée (c'est pour la gestion de l'effet de glow quand on a un filtre actif)
     for (let i = 0; i < this.listPerso.length; i++) {
       if (this.listPerso[i].show === false) {
         ajustment++;
@@ -46,7 +46,7 @@ export class ChoixComponent implements OnInit {
     this.select(this.listPerso[this.glow].pic, this.listPerso[this.glow].name);
   };
 
-  onKeypressEvent = (filter) => { //filtre de la searchbar
+  onKeypressEvent = (filter) => { //filtre de la searchbar (j'en ai chié)
     for (const line of this.listPerso) {
       if (!line.name.toUpperCase().includes(filter.target.value.toUpperCase())) {
         line.show = false;
@@ -77,21 +77,21 @@ export class ChoixComponent implements OnInit {
     }
   };
 
-  resetP1 = () => {
+  resetP1 = () => { //le nom parle de lui-même
     this.glob.resetPic1();
     if (document.getElementById('glow_blue')) {
       document.getElementById('glow_blue').removeAttribute('id');
     }
   };
 
-  resetP2 = () => {
+  resetP2 = () => { //idem ici
     this.glob.resetPic2();
     if (document.getElementById('glow_red')) {
       document.getElementById('glow_red').removeAttribute('id');
     }
   };
 
-  async select(url, name) {
+  async select(url, name) { //trigger sur clic et gestion de tous les cas particuliers
     this.glow = this.getPositionByName(name);
     const player = '../' + url;
     let actionSheet;

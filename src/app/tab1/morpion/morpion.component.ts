@@ -9,13 +9,13 @@ import {Player} from '../../shared/classes/player';
 })
 export class MorpionComponent implements AfterViewInit, OnInit{
 
-  public currentPlayer=1;
-  public p1;
-  public p2;
-  public win=[];
-  public output;
-  public loop=[];
-  public matrix=
+  public currentPlayer=1; //toggle entre 1 et 2
+  public p1; //player1
+  public p2; //player2
+  public win=[]; //ce qu'il y a dedans on s'en fout un peu mais on détecte la win avec ça
+  public output; //output des messages de la machine
+  public loop=[]; //confettis
+  public matrix= //plateau de jeu
     [
       [0,0,0],
       [0,0,0],
@@ -31,16 +31,16 @@ export class MorpionComponent implements AfterViewInit, OnInit{
 
   ngOnInit() {
     this.firstPlayer();
-    for(let i=149;i>0;i--){
+    for(let i=149;i>0;i--){ //c'est moche mais j'ai pas d'autre solution pour les confettis
       this.loop[149-i]=i;
     }
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit() { //après le chargement complet du HTML pour effet glow
     this.firstPlayerSprite();
   }
 
-  firstPlayer=()=>{
+  firstPlayer=()=>{ //aléatoire entre les 2 joueurs
     this.currentPlayer=Math.floor(Math.random()*2)+1;
 
     if(document.getElementsByClassName('glow')){
@@ -58,13 +58,11 @@ export class MorpionComponent implements AfterViewInit, OnInit{
 
   };
 
-  firstPlayerSprite=()=>{
-    if(this.glob.getPic1()!=='../../../assets/pics/sprites_choix/point_interrogation.png'&&this.glob.getPic2()!=='../../../assets/pics/sprites_choix/point_interrogation.png') {
-      if (this.currentPlayer === 1) {
-        document.getElementById('pic1').setAttribute('class', 'glow');
-      } else {
-        document.getElementById('pic2').setAttribute('class', 'glow');
-      }
+  firstPlayerSprite=()=>{ //glow le 1er joueur
+    if (this.currentPlayer === 1) {
+      document.getElementById('pic1').setAttribute('class', 'glow');
+    } else {
+      document.getElementById('pic2').setAttribute('class', 'glow');
     }
   };
 
