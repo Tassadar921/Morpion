@@ -95,34 +95,72 @@ export class ChoixComponent implements OnInit {
     this.glow = this.getPositionByName(name);
     const player = '../' + url;
     let actionSheet;
-    if (this.glob.getPic1() === '../../../assets/pics/sprites_choix/point_interrogation.png') //si pic1 est celle de base
+    if (this.glob.getPic1() === '../../../assets/pics/sprites_choix/point_interrogation.png') //si pic1 est indéfinie
     {
-      actionSheet = await this.actionSheetController.create({
-        header: 'Choisir ' + name + ' pour ' + this.glob.getNick1() + ' ?',
-        cssClass: 'my-custom-class',
-        buttons: [{
-          text: 'Oui',
-          role: 'destructive',
-          icon: 'game-controller',
-          handler: () => {
-            this.glob.setPic1(player);
-            document.getElementsByClassName('zoom')[this.glow].setAttribute('id', 'glow_blue');
-          }
-        }, {
-          text: 'Non',
-          icon: 'close',
-          role: 'cancel',
-        }]
-      });
+      if(name==='Valentin'){
+        actionSheet = await this.actionSheetController.create({
+          header: 'Choisir ' + name + ' pour ' + this.glob.getNick1() + ' ? Attention il s\'agit du pire perso du jeu',
+          buttons: [{
+            text: 'Oui',
+            role: 'destructive',
+            icon: 'game-controller',
+            handler: () => {
+              this.glob.setPic1(player);
+              document.getElementsByClassName('zoom')[this.glow].setAttribute('id', 'glow_blue');
+            }
+          }, {
+            text: 'Non',
+            icon: 'close',
+            role: 'cancel',
+          }]
+        });
+      }
+      else {
+        actionSheet = await this.actionSheetController.create({
+          header: 'Choisir ' + name + ' pour ' + this.glob.getNick1() + ' ?',
+          buttons: [{
+            text: 'Oui',
+            role: 'destructive',
+            icon: 'game-controller',
+            handler: () => {
+              this.glob.setPic1(player);
+              document.getElementsByClassName('zoom')[this.glow].setAttribute('id', 'glow_blue');
+            }
+          }, {
+            text: 'Non',
+            icon: 'close',
+            role: 'cancel',
+          }]
+        });
+      }
       await actionSheet.present();
     } else {
       if (player === this.glob.getPic1()) {
         this.error = 'Merci de choisir des perso. différents';
       }else {
       if (this.glob.getPic2() === '../../../assets/pics/sprites_choix/point_interrogation.png') {
+        if(name==='Valentin'){
+          actionSheet = await this.actionSheetController.create({
+            header: 'Choisir ' + name + ' pour ' + this.glob.getNick2() + ' ? Attention il s\'agit du pire perso du jeu',
+            buttons: [{
+              text: 'Oui',
+              role: 'destructive',
+              icon: 'game-controller',
+              handler: () => {
+                this.glob.setPic2(player);
+                document.getElementsByClassName('zoom')[this.glow].setAttribute('id', 'glow_red');
+                this.error = '';
+              }
+            }, {
+              text: 'Non',
+              icon: 'close',
+              role: 'cancel',
+            }]
+          });
+        }
+        else{
         actionSheet = await this.actionSheetController.create({
           header: 'Choisir ' + name + ' pour ' + this.glob.getNick2() + ' ?',
-          cssClass: 'my-custom-class',
           buttons: [{
             text: 'Oui',
             role: 'destructive',
@@ -138,6 +176,7 @@ export class ChoixComponent implements OnInit {
             role: 'cancel',
           }]
         });
+        }
         await actionSheet.present();
       } else {
           this.error = 'Vous avez déjà choisi 2 perso.';
