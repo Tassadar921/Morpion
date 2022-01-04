@@ -8,13 +8,13 @@ import {GlobalVarsService} from '../../shared/services/global-vars.service';
 })
 export class NicknamesComponent implements OnInit {
 
-  constructor(
-    private glob: GlobalVarsService,
-  ) {}
-
   public p1;
   public p2;
   public error;
+
+  constructor(
+    private glob: GlobalVarsService,
+  ) {}
 
   ngOnInit() {}
 
@@ -26,7 +26,7 @@ export class NicknamesComponent implements OnInit {
       if(this.p1===this.p2 && this.p1 && this.p2){
         this.error='Veuillez choisir 2 pseudos différents';
       }else{
-        if((this.p1&&!this.p2)||(!this.p1&&this.p2)){
+        if((this.p1&&!this.p2)||(!this.p1&&this.p2)||(!this.p1&&!this.p2)){
           this.error='Veuillez remplir les deux pseudos';
           if(this.p1&&!this.p2){
             document.getElementById('input2').style.backgroundColor='#BC4747';
@@ -38,6 +38,10 @@ export class NicknamesComponent implements OnInit {
         }
       }
     }
+  };
+
+  trigger=(e)=>{
+    if(e.key==='Enter'){this.submit();}
   };
 
 }

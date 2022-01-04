@@ -1,9 +1,13 @@
-<div id="form">
-  <img id="background" src="../../assets/pics/background.jpg">
-  <input id="input1" type="text" placeholder="Nickname player 1" [(ngModel)]="p1"><br>
+<form (keypress)="trigger($event)">
 
-  <input id="input2" type="text" placeholder="Nickname player 2" [(ngModel)]="p2"><br>
+<form>
+  <img id="background" src="../../assets/pics/background.jpg">
+  <ion-input id="input1" type="text" placeholder="Nickname player 1" [(ngModel)]="p1" [ngModelOptions]="{standalone: true}"></ion-input>
+
+  <ion-input id="input2" type="text" placeholder="Nickname player 2" [(ngModel)]="p2" [ngModelOptions]="{standalone: true}"></ion-input>
 
   <ion-button (click)="submit();">Submit</ion-button>
   <p>{{error}}</p>
-</div>
+</form>
+
+</form>
