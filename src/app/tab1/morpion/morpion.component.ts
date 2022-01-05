@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {GlobalVarsService} from '../../shared/services/global-vars.service';
 import {Player} from '../../shared/classes/player';
 import {TextService} from '../../shared/services/text.service';
+import {SoundEffectsService} from '../../shared/services/sound-effects.service';
 
 @Component({
   selector: 'app-morpion',
@@ -23,16 +24,22 @@ export class MorpionComponent implements OnInit, AfterViewInit{
       [0,0,0],
       [0,0,0]
     ];
+  public sonChargement = new Audio('../../assets/sounds/annonceur/entrée/entrée.wav');
+  public draw = new Audio();
 
   constructor(
     private glob: GlobalVarsService,
     private text: TextService,
+    private sounds: SoundEffectsService,
   ) {
     this.p1=new Player('1',this.glob.getNick1(), this.glob.getPic1());
     this.p2=new Player('2',this.glob.getNick2(), this.glob.getPic2());
   }
 
   ngOnInit() {
+    if(this.glob.getPic1()!=='../../../assets/pics/sprites_choix/point_interrogation.png' && this.glob.getPic2()!=='../../../assets/pics/sprites_choix/point_interrogation.png'){
+      this.sonChargement.play();
+    }
     this.firstPlayer();
     for(let i=149;i>0;i--){ //c'est moche mais j'ai pas d'autre solution pour les confettis
       this.loop[149-i]=i;
@@ -40,7 +47,9 @@ export class MorpionComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit() { //après le chargement complet du HTML pour effet glow
-    this.firstPlayerSprite();
+    if(this.glob.getPic1()!=='../../../assets/pics/sprites_choix/point_interrogation.png' && this.glob.getPic2()!=='../../../assets/pics/sprites_choix/point_interrogation.png') {
+      this.firstPlayerSprite();
+    }
   }
 
   firstPlayer=()=>{ //aléatoire entre les 2 joueurs sauf si l'un a choisi Valentin, auquel cas il commencera jamais
@@ -76,7 +85,7 @@ export class MorpionComponent implements OnInit, AfterViewInit{
     }
   };
 
-  click=(line, col)=>{
+  click=(line, col)=>{ //on actualise la matrice en fonction de qui a cliqué où ssi win est vide
     if(this.win.length===0) {
       if (this.matrix[line][col] === 0) {
         this.matrix[line][col] = this.currentPlayer;
@@ -85,8 +94,7 @@ export class MorpionComponent implements OnInit, AfterViewInit{
     }
   };
 
-  endTurn=()=>{
-    this.win=this.checking();
+  switchGlow=()=>{
     if(this.currentPlayer===1){
       this.currentPlayer+=1;
       document.getElementById('pic2').setAttribute('class','glow');
@@ -96,11 +104,22 @@ export class MorpionComponent implements OnInit, AfterViewInit{
       document.getElementById('pic1').setAttribute('class','glow');
       document.getElementById('pic2').removeAttribute('class');
     }
-    this.turn+=1;
-    if(this.turn===9){this.output=this.text.getRandomDraw();}
   };
 
-  checking=()=>{
+  endTurn=()=>{ //fonction principale de fin de tour, on fait plein de trucs
+    this.win=this.checking();
+    if(this.win.length!==0){this.switchGlow();}
+    this.switchGlow();
+    this.turn+=1;
+    if(this.turn===9){ //en cas de draw
+      this.output=this.text.getRandomDraw();
+      this.draw.src=this.sounds.getRandomDraw();
+      this.draw.play();
+      this.switchGlow();
+    }
+  };
+
+  checking=()=>{ //si quelqu'un a win on remplit tmp avec l'endroit de la win + output de win
     const tmp=[];
     for(let i=0;i<3;i++) {
       if (this.matrix[i][0] !== 0 && this.matrix[i][1] !== 0 && this.matrix[i][2] !== 0 && this.matrix[i][0] === this.matrix[i][1] && this.matrix[i][0] === this.matrix[i][2]) {
@@ -127,6 +146,7 @@ export class MorpionComponent implements OnInit, AfterViewInit{
       }
     }
     if(this.glob.getWin()!==0){
+      this.sounds.getWin().play();
       if(this.glob.getWin()===1){this.output=this.text.getRandomEnd(this.glob.getNick1(), this.glob.getNick2());}
       else{this.output=this.text.getRandomEnd(this.glob.getNick2(), this.glob.getNick1());}
     }
@@ -145,6 +165,6 @@ export class MorpionComponent implements OnInit, AfterViewInit{
       ];
     this.glob.setWin(0);
     this.turn=0;
+    this.draw.src='';
   };
-
 }

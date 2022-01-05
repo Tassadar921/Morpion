@@ -15,7 +15,7 @@ export class ChoixComponent implements OnInit {
   public error = '';
   public glow;
   public input;
-  public sonChargement = new Audio();
+  public sonChargement = new Audio('../../assets/sounds/annonceur/choisir.wav');
 
   constructor(
     private data: PersonnagesService,
@@ -25,6 +25,7 @@ export class ChoixComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.sonChargement.play();
     this.listPerso = this.data.getData();
   }
 
