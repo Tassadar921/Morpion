@@ -92,6 +92,7 @@ export class ChoixComponent implements OnInit {
   };
 
   async select(url, name) { //trigger sur clic et gestion de tous les cas particuliers
+    const audio=new Audio('../../assets/sounds/persos/' + name + '.wav');
     this.glow = this.getPositionByName(name);
     const player = '../' + url;
     let actionSheet;
@@ -105,6 +106,7 @@ export class ChoixComponent implements OnInit {
             role: 'destructive',
             icon: 'game-controller',
             handler: () => {
+              audio.play();
               this.glob.setPic1(player);
               document.getElementsByClassName('zoom')[this.glow].setAttribute('id', 'glow_blue');
             }
@@ -123,6 +125,7 @@ export class ChoixComponent implements OnInit {
             role: 'destructive',
             icon: 'game-controller',
             handler: () => {
+              audio.play();
               this.glob.setPic1(player);
               document.getElementsByClassName('zoom')[this.glow].setAttribute('id', 'glow_blue');
             }
@@ -147,6 +150,7 @@ export class ChoixComponent implements OnInit {
               role: 'destructive',
               icon: 'game-controller',
               handler: () => {
+                audio.play();
                 this.glob.setPic2(player);
                 document.getElementsByClassName('zoom')[this.glow].setAttribute('id', 'glow_red');
                 this.error = '';
@@ -166,6 +170,7 @@ export class ChoixComponent implements OnInit {
             role: 'destructive',
             icon: 'game-controller',
             handler: () => {
+              audio.play();
               this.glob.setPic2(player);
               document.getElementsByClassName('zoom')[this.glow].setAttribute('id', 'glow_red');
               this.error = '';

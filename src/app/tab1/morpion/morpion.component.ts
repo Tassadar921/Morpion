@@ -1,13 +1,14 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {GlobalVarsService} from '../../shared/services/global-vars.service';
 import {Player} from '../../shared/classes/player';
+import {TextService} from '../../shared/services/text.service';
 
 @Component({
   selector: 'app-morpion',
   templateUrl: './morpion.component.html',
   styleUrls: ['./morpion.component.scss'],
 })
-export class MorpionComponent implements AfterViewInit, OnInit{
+export class MorpionComponent implements OnInit, AfterViewInit{
 
   public currentPlayer=1; //toggle entre 1 et 2
   public p1; //player1
@@ -15,6 +16,7 @@ export class MorpionComponent implements AfterViewInit, OnInit{
   public win=[]; //ce qu'il y a dedans on s'en fout un peu mais on détecte la win avec ça
   public output; //output des messages de la machine
   public loop=[]; //confettis
+  public turn=0; //compteur de tours
   public matrix= //plateau de jeu
     [
       [0,0,0],
@@ -24,6 +26,7 @@ export class MorpionComponent implements AfterViewInit, OnInit{
 
   constructor(
     private glob: GlobalVarsService,
+    private text: TextService,
   ) {
     this.p1=new Player('1',this.glob.getNick1(), this.glob.getPic1());
     this.p2=new Player('2',this.glob.getNick2(), this.glob.getPic2());
@@ -40,8 +43,16 @@ export class MorpionComponent implements AfterViewInit, OnInit{
     this.firstPlayerSprite();
   }
 
-  firstPlayer=()=>{ //aléatoire entre les 2 joueurs
-    this.currentPlayer=Math.floor(Math.random()*2)+1;
+  firstPlayer=()=>{ //aléatoire entre les 2 joueurs sauf si l'un a choisi Valentin, auquel cas il commencera jamais
+    if(this.glob.getPic1()!=='../../../assets/pics/sprites_choix/Valentin.png' && this.glob.getPic2()!=='../../../assets/pics/sprites_choix/Valentin.png') {
+      this.currentPlayer = Math.floor(Math.random() * 2) + 1;
+    }else{
+      if(this.glob.getPic1()==='../../../assets/pics/sprites_choix/Valentin.png'){
+        this.currentPlayer = 2;
+      }else{
+        this.currentPlayer = 1;
+      }
+    }
 
     if(document.getElementsByClassName('glow')){
       const tmp = document.getElementsByClassName('glow');
@@ -51,11 +62,10 @@ export class MorpionComponent implements AfterViewInit, OnInit{
     }
 
     if(this.currentPlayer===1){
-      this.output='Le marteau du destin a frappé : '+this.glob.getNick1()+' commencera';
+      this.output=this.text.getRandomBegin(this.glob.getNick1(), this.glob.getNick2());
     }else{
-      this.output='Malheureusement pour '+this.glob.getNick2()+' ce sera '+this.glob.getNick1()+' qui commencera';
+      this.output=this.text.getRandomBegin(this.glob.getNick2(), this.glob.getNick1());
     }
-
   };
 
   firstPlayerSprite=()=>{ //glow le 1er joueur
@@ -86,6 +96,8 @@ export class MorpionComponent implements AfterViewInit, OnInit{
       document.getElementById('pic1').setAttribute('class','glow');
       document.getElementById('pic2').removeAttribute('class');
     }
+    this.turn+=1;
+    if(this.turn===9){this.output=this.text.getRandomDraw();}
   };
 
   checking=()=>{
@@ -115,8 +127,8 @@ export class MorpionComponent implements AfterViewInit, OnInit{
       }
     }
     if(this.glob.getWin()!==0){
-      if(this.glob.getWin()===1){this.output='Honte à '+this.glob.getNick2()+', '+this.glob.getNick1()+' l\'a emporté';}
-      else{this.output=this.glob.getNick2()+' a été meilleur';}
+      if(this.glob.getWin()===1){this.output=this.text.getRandomEnd(this.glob.getNick1(), this.glob.getNick2());}
+      else{this.output=this.text.getRandomEnd(this.glob.getNick2(), this.glob.getNick1());}
     }
     return tmp;
   };
@@ -132,6 +144,7 @@ export class MorpionComponent implements AfterViewInit, OnInit{
         [0,0,0]
       ];
     this.glob.setWin(0);
+    this.turn=0;
   };
 
 }
