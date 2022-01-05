@@ -15,6 +15,7 @@ export class ChoixComponent implements OnInit {
   public error = '';
   public glow;
   public input;
+  public sonChargement = new Audio();
 
   constructor(
     private data: PersonnagesService,
