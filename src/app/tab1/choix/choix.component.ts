@@ -33,21 +33,30 @@ export class ChoixComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    //if(document.getElementsByClassName('random')[0]){console.log(true);}else{console.log(false);}
     this.setGlow();
   }
 
   setGlow = () => {
-    if(this.blue===true){
-      document.getElementsByClassName('glow_blue')[0].classList.remove('glow_blue');
+
+    if(this.blue===false && document.getElementsByClassName('glow_blue')[0]){
+      document.getElementsByClassName('glow_blue')[0].removeAttribute('class');
     }
-    if(this.red===true){
-      document.getElementsByClassName('glow_red')[0].classList.remove('glow_red');
+
+    if(this.red===false && document.getElementsByClassName('glow_red')[0]){
+      document.getElementsByClassName('glow_red')[0].removeAttribute('class');
     }
+
     if(this.glob.getChoix1()){
-      document.getElementById(this.glob.getChoix1()).className += 'glow_blue';
+      if(!document.getElementById(this.glob.getChoix1()).className.includes('glow_blue')) {
+        document.getElementById(this.glob.getChoix1()).className += 'glow_blue';
+      }
     }
+
     if (this.glob.getChoix2()) {
-      document.getElementById(this.glob.getChoix2()).className += 'glow_red';
+      if(!document.getElementById(this.glob.getChoix2()).className.includes('glow_red')) {
+        document.getElementById(this.glob.getChoix2()).className += 'glow_red';
+      }
     }
   };
 
@@ -78,6 +87,7 @@ export class ChoixComponent implements OnInit, AfterViewInit {
         line.show = true;
       }
     }
+    this.setGlow();
   };
 
   displayReset(){ // on réaffiche tout au clear de la searchbar
@@ -86,7 +96,6 @@ export class ChoixComponent implements OnInit, AfterViewInit {
         line.show = true;
       }
     }
-    this.setGlow();
   }
 
   reinit = () => { //on supprime le choix des perso
@@ -94,17 +103,24 @@ export class ChoixComponent implements OnInit, AfterViewInit {
     this.glob.setPic2('../../../assets/pics/sprites_choix/point_interrogation.png');
     this.glob.resetChoix1();
     this.glob.resetChoix2();
+    this.blue=false;
+    this.red=false;
+    this.setGlow();
     this.error = '';
   };
 
   resetP1 = () => { //le nom parle de lui-même
     this.glob.resetPic1();
     this.glob.resetChoix1();
+    this.blue=false;
+    this.setGlow();
   };
 
   resetP2 = () => { //idem ici
     this.glob.resetPic2();
     this.glob.resetChoix2();
+    this.red=false;
+    this.setGlow();
   };
 
   async select(url, name) { //trigger sur clic et gestion de tous les cas particuliers
