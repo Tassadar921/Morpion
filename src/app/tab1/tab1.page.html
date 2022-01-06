@@ -27,7 +27,7 @@
     <ion-fab-list side="end">
       <ion-icon (click)='sound.mute(false); $event.stopPropagation()' name="volume-mute" *ngIf="music.muted"></ion-icon>
       <ion-icon (click)='sound.mute(true); $event.stopPropagation()' name="volume-high" *ngIf="!music.muted"></ion-icon>
-      <input type="range" min="0" max="0.25" step="0.0001" [(ngModel)]="volume" (change)="sound.setVolume(volume)" (click)="$event.stopPropagation()">
+      <ion-input type="range" min="0" max="0.25" step="0.0001" [(ngModel)]="volume" (ionChange)="sound.setVolume(volume)" (click)="$event.stopPropagation()"></ion-input>
     </ion-fab-list>
   </ion-fab>
 
