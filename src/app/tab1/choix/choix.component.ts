@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {ActionSheetController} from '@ionic/angular';
 
 import { PersonnagesService} from '../../shared/services/personnages.service';
@@ -9,13 +9,16 @@ import { GlobalVarsService} from '../../shared/services/global-vars.service';
   templateUrl: './choix.component.html',
   styleUrls: ['./choix.component.scss'],
 })
-export class ChoixComponent implements OnInit {
+export class ChoixComponent implements OnInit, AfterViewInit {
 
   public listPerso;
   public error = '';
   public glow;
   public input;
+  public count=0;
   public sonChargement = new Audio('../../assets/sounds/annonceur/choisir.wav');
+  public red=false;
+  public blue=false;
 
   constructor(
     private data: PersonnagesService,
@@ -28,6 +31,25 @@ export class ChoixComponent implements OnInit {
     this.sonChargement.play();
     this.listPerso = this.data.getData();
   }
+
+  ngAfterViewInit() {
+    this.setGlow();
+  }
+
+  setGlow = () => {
+    if(this.blue===true){
+      document.getElementsByClassName('glow_blue')[0].classList.remove('glow_blue');
+    }
+    if(this.red===true){
+      document.getElementsByClassName('glow_red')[0].classList.remove('glow_red');
+    }
+    if(this.glob.getChoix1()){
+      document.getElementById(this.glob.getChoix1()).className += 'glow_blue';
+    }
+    if (this.glob.getChoix2()) {
+      document.getElementById(this.glob.getChoix2()).className += 'glow_red';
+    }
+  };
 
   getPositionByName = (name) => {
     let ajustment = 0; //on incrémente quand l'image n'est pas affichée (c'est pour la gestion de l'effet de glow quand on a un filtre actif)
@@ -58,39 +80,31 @@ export class ChoixComponent implements OnInit {
     }
   };
 
-  displayReset = () => { // on réaffiche tout au clear de la searchbar
+  displayReset(){ // on réaffiche tout au clear de la searchbar
     for (const line of this.listPerso) {
       if (line.show === false) {
         line.show = true;
       }
     }
-  };
+    this.setGlow();
+  }
 
   reinit = () => { //on supprime le choix des perso
     this.glob.setPic1('../../../assets/pics/sprites_choix/point_interrogation.png');
     this.glob.setPic2('../../../assets/pics/sprites_choix/point_interrogation.png');
+    this.glob.resetChoix1();
+    this.glob.resetChoix2();
     this.error = '';
-
-    if (document.getElementById('glow_blue')) {
-      document.getElementById('glow_blue').removeAttribute('id');
-    }
-    if (document.getElementById('glow_red')) {
-      document.getElementById('glow_red').removeAttribute('id');
-    }
   };
 
   resetP1 = () => { //le nom parle de lui-même
     this.glob.resetPic1();
-    if (document.getElementById('glow_blue')) {
-      document.getElementById('glow_blue').removeAttribute('id');
-    }
+    this.glob.resetChoix1();
   };
 
   resetP2 = () => { //idem ici
     this.glob.resetPic2();
-    if (document.getElementById('glow_red')) {
-      document.getElementById('glow_red').removeAttribute('id');
-    }
+    this.glob.resetChoix2();
   };
 
   async select(url, name) { //trigger sur clic et gestion de tous les cas particuliers
@@ -110,7 +124,9 @@ export class ChoixComponent implements OnInit {
             handler: () => {
               audio.play();
               this.glob.setPic1(player);
-              document.getElementsByClassName('zoom')[this.glow].setAttribute('id', 'glow_blue');
+              this.glob.setChoix1(name);
+              this.setGlow();
+              this.blue=true;
             }
           }, {
             text: 'Non',
@@ -129,7 +145,9 @@ export class ChoixComponent implements OnInit {
             handler: () => {
               audio.play();
               this.glob.setPic1(player);
-              document.getElementsByClassName('zoom')[this.glow].setAttribute('id', 'glow_blue');
+              this.glob.setChoix1(name);
+              this.setGlow();
+              this.blue=true;
             }
           }, {
             text: 'Non',
@@ -154,7 +172,9 @@ export class ChoixComponent implements OnInit {
               handler: () => {
                 audio.play();
                 this.glob.setPic2(player);
-                document.getElementsByClassName('zoom')[this.glow].setAttribute('id', 'glow_red');
+                this.glob.setChoix2(name);
+                this.setGlow();
+                this.red=true;
                 this.error = '';
               }
             }, {
@@ -174,7 +194,9 @@ export class ChoixComponent implements OnInit {
             handler: () => {
               audio.play();
               this.glob.setPic2(player);
-              document.getElementsByClassName('zoom')[this.glow].setAttribute('id', 'glow_red');
+              this.glob.setChoix2(name);
+              this.setGlow();
+              this.red=true;
               this.error = '';
             }
           }, {
@@ -188,7 +210,6 @@ export class ChoixComponent implements OnInit {
       } else {
           this.error = 'Vous avez déjà choisi 2 perso.';
         }
-
       }
     }
   }

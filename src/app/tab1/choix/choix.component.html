@@ -16,8 +16,8 @@
   <button (click)="resetP2()">Changer</button>
 </div>
 
-<div *ngFor="let line of listPerso">
-  <img class="zoom" src={{line.pic}} title={{line.name}} (click)="select(line.pic, line.name)" *ngIf="line.show===true">
+<div *ngFor="let line of listPerso" id="container">
+  <img id={{line.name}} src={{line.pic}} title={{line.name}} (click)="select(line.pic, line.name)" *ngIf="line.show===true">
 </div>
 
-<img id='random' class="zoom" src="../../../assets/pics/sprites_choix/point_interrogation.png" title="Aléatoire" (click)="random()">
+<img id='random' src="../../../assets/pics/sprites_choix/point_interrogation.png" title="Aléatoire" (click)="random()">

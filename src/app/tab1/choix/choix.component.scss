@@ -16,7 +16,7 @@ button:hover{
   background-color:#B49A9A;
 }
 
-.zoom:hover{
+#container img:hover, #random:hover{
   width:130px;
   height:130px;
   border:solid 2px white;
@@ -65,10 +65,10 @@ p{
   color:red;
 }
 
-#glow_red{
+.glow_red{
   filter: drop-shadow(0 0 1rem rgb(199, 37, 37));
 }
 
-#glow_blue{
+.glow_blue{
   filter: drop-shadow(0 0 1rem rgb(67, 142, 228));
 }
