@@ -18,6 +18,8 @@ export class MorpionComponent implements OnInit, AfterViewInit{
   public output; //output des messages de la machine
   public loop=[]; //confettis
   public turn=0; //compteur de tours
+  public scoreP1=0;
+  public scoreP2=0;
   public matrix= //plateau de jeu
     [
       [0,0,0],
@@ -147,8 +149,14 @@ export class MorpionComponent implements OnInit, AfterViewInit{
     }
     if(this.glob.getWin()!==0){
       this.sounds.getWin().play();
-      if(this.glob.getWin()===1){this.output=this.text.getRandomEnd(this.glob.getNick1(), this.glob.getNick2());}
-      else{this.output=this.text.getRandomEnd(this.glob.getNick2(), this.glob.getNick1());}
+      if(this.glob.getWin()===1){
+        this.output=this.text.getRandomEnd(this.glob.getNick1(), this.glob.getNick2());
+        this.scoreP1+=1;
+      }
+      else{
+        this.output=this.text.getRandomEnd(this.glob.getNick2(), this.glob.getNick1());
+        this.scoreP2+=1;
+      }
     }
     return tmp;
   };
