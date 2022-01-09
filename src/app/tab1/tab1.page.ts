@@ -22,4 +22,10 @@ export class Tab1Page{
   switch=(val)=>{ //toggle pour les components
     this.tab=val;
   };
+
+  reinit=()=>{
+    this.tab=1;
+    this.glob.reinit();
+  }
+
 }

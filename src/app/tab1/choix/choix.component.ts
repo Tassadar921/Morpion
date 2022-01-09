@@ -33,6 +33,7 @@ export class ChoixComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {//une fois que tout est affiché on setglow (inutile au 1er chargement mais c'est en cas de changement de perso entre plusieurs games, on a une save des perso si l'un veut garder le sien
     this.setGlow();
+    this.displayReset();
   }
 
   setGlow = () => { //c'est dégueu mais impossible de trouver une autre façon de faire

@@ -80,7 +80,10 @@ export class PersonnagesService {
       'Zelda',
       'Samus Without Suit',
       'Greninja',
-      'Valentin'
+      'Valentin',
+      'Paul',
+      'Vianney',
+      'Nathan'
     ];
 
   public data=[];

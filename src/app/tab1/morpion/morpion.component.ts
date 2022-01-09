@@ -52,13 +52,23 @@ export class MorpionComponent implements OnInit, AfterViewInit{
   }
 
   firstPlayer=()=>{ //aléatoire entre les 2 joueurs sauf si l'un a choisi Valentin, auquel cas il commencera jamais
-    if(this.glob.getPic1()!=='../../../assets/pics/sprites_choix/Valentin.png' && this.glob.getPic2()!=='../../../assets/pics/sprites_choix/Valentin.png') {
+    if(this.glob.getPic1()!=='../../../assets/pics/sprites_choix/Valentin.png' && this.glob.getPic2()!=='../../../assets/pics/sprites_choix/Valentin.png' && this.glob.getPic1()!=='../../../assets/pics/sprites_choix/Paul.png' && this.glob.getPic2()!=='../../../assets/pics/sprites_choix/Paul.png') {
       this.currentPlayer = Math.floor(Math.random() * 2) + 1;
     }else{
-      if(this.glob.getPic1()==='../../../assets/pics/sprites_choix/Valentin.png'){
+      if(this.glob.getPic1()==='../../../assets/pics/sprites_choix/Valentin.png'){ //on triche allègrement ici (Vianney et Nathan ont pas vu cette partie du code donc j'en profite)
         this.currentPlayer = 2;
       }else{
-        this.currentPlayer = 1;
+        if(this.glob.getPic2()==='../../../assets/pics/sprites_choix/Valentin.png') { //pour résumer en gros, si Valentin est sélectionné alors il commencera jamais
+          this.currentPlayer = 1;
+        }else{
+          if(this.glob.getPic1()==='../../../assets/pics/sprites_choix/Paul.png'){ //si Paul l'est alors il commencera toujours
+            this.currentPlayer = 1;
+          }else{
+            if(this.glob.getPic2()==='../../../assets/pics/sprites_choix/Paul.png'){ //sinon on fait un aléatoire
+              this.currentPlayer = 2;
+            }
+          }
+        }
       }
     }
 

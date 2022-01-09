@@ -10,7 +10,7 @@
       <ion-segment-button value="0" (click)="switch(0)">Jeu</ion-segment-button>
     </ion-segment>
 
-    <ion-button shape="round" (click)="glob.reinit()">Changement de joueurs</ion-button>
+    <ion-button shape="round" (click)="reinit()">Changement de joueurs</ion-button>
 
     <app-choix *ngIf="tab===1"></app-choix>
     <app-morpion *ngIf="tab===0"></app-morpion>
