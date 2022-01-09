@@ -26,6 +26,6 @@ export class Tab1Page{
   reinit=()=>{
     this.tab=1;
     this.glob.reinit();
-  }
+  };
 
 }
