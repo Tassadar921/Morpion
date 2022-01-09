@@ -1,6 +1,6 @@
 <ion-searchbar id="search" [(ngModel)]="input" showCancelButton="always" (keyup)="onKeypressEvent($event); setGlow()" (change)="setGlow" (ionClear)="displayReset()"></ion-searchbar>
 
-<ion-button (click)="reinit()">Réinitialiser choix</ion-button>
+<ion-button shape="round" (click)="reinit()">Réinitialiser choix</ion-button>
 
 <p id="err">{{error}}</p>
 

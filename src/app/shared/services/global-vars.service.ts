@@ -53,4 +53,16 @@ export class GlobalVarsService { //toutes les variables à transférer d'une pag
 
   getScore2=()=>this.score2;
   incrementScore2=()=>this.score2+=1;
+
+  reinit=()=>{
+    this.pic1='../../../assets/pics/sprites_choix/point_interrogation.png';
+    this.pic2='../../../assets/pics/sprites_choix/point_interrogation.png';
+    this.choix1='';
+    this.choix2='';
+    this.nick1='';
+    this.nick2='';
+    this.win=0;
+    this.score1=0;
+    this.score2=0;
+  }
 }
