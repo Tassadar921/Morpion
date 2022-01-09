@@ -31,12 +31,12 @@ export class ChoixComponent implements OnInit, AfterViewInit {
     this.listPerso = this.data.getData();
   }
 
-  ngAfterViewInit() {
-    //if(document.getElementsByClassName('random')[0]){console.log(true);}else{console.log(false);}
+  ngAfterViewInit() {//une fois que tout est affiché on setglow (inutile au 1er chargement mais c'est en cas de changement de perso entre plusieurs games, on a une save des perso si l'un veut garder le sien
     this.setGlow();
   }
 
-  setGlow = () => {
+  setGlow = () => { //c'est dégueu mais impossible de trouver une autre façon de faire
+    //du coup c'est pour set la glow en fonction des choix1 et choix2 de glob
 
     if(this.blue===false && document.getElementsByClassName('glow_blue')[0]){
       document.getElementsByClassName('glow_blue')[0].removeAttribute('class');
@@ -57,17 +57,6 @@ export class ChoixComponent implements OnInit, AfterViewInit {
         document.getElementById(this.glob.getChoix2()).className += 'glow_red';
       }
     }
-    /*
-    console.log('---------- BLUE ----------');
-    console.log(document.getElementsByClassName('glow_blue')[0]);
-    console.log(this.glob.getChoix1());
-    console.log(document.getElementById(this.glob.getChoix1()));
-
-    console.log('---------- RED ----------');
-    console.log(document.getElementsByClassName('glow_red')[0]);
-    console.log(this.glob.getChoix2());
-    console.log(document.getElementById(this.glob.getChoix2()));
-     */
   };
 
   random = () => { //sélection aléatoire de perso
@@ -77,8 +66,7 @@ export class ChoixComponent implements OnInit, AfterViewInit {
     this.select(this.listPerso[this.glow].pic, this.listPerso[this.glow].name);
   };
 
-  onKeypressEvent = (filter) => { //filtre de la searchbar (j'en ai chié)
-    console.log(filter.target.value);
+  onKeypressEvent = (filter) => { //filtre de la searchbar (j'en ai chié) reste des bugs de glow mais aucune idée de comment les régler
     for (const line of this.listPerso) {
       line.show = line.name.toUpperCase().includes(filter.target.value.toUpperCase());
     }
@@ -119,71 +107,62 @@ export class ChoixComponent implements OnInit, AfterViewInit {
     this.setGlow();
   };
 
-  async select(url, name) { //trigger sur clic et gestion de tous les cas particuliers
-    console.log('on est là');
-    const audio = new Audio('../../assets/sounds/persos/' + name + '.wav');
-    const player = '../' + url;
-    let end;
-    if (name === 'Valentin') {
-      console.log('Valentin');
-      end = ' ? Attention il s\'agit du pire perso du jeu';
-    } else {
-      console.log('pas Valentin');
-      end = ' ?';
-    }
-    let actionSheet;
-    if (this.glob.getPic1() === '../../../assets/pics/sprites_choix/point_interrogation.png') //si pic1 est indéfinie
-    {
-      actionSheet = await this.actionSheetController.create({
-        header: 'Choisir ' + name + ' pour ' + this.glob.getNick1() + end,
-        buttons: [{
-          text: 'Oui',
-          role: 'destructive',
-          icon: 'game-controller',
-          handler: () => {
+  async action(turn, player, name, end, audio){
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Choisir ' + name + ' pour ' + this.glob.getNick2() + end,
+      buttons: [{
+        text: 'Oui',
+        role: 'destructive',
+        icon: 'game-controller',
+        handler: () => {
+          if(turn===1){
             audio.play();
             this.glob.setPic1(player);
             this.glob.setChoix1(name);
             this.setGlow();
             this.blue = true;
+          }else{
+            audio.play();
+            this.glob.setPic2(player);
+            this.glob.setChoix2(name);
+            this.setGlow();
+            this.red = true;
+            this.error = '';
           }
-        }, {
-          text: 'Non',
-          icon: 'close',
-          role: 'cancel',
-        }]
-      });
+        }
+      }, {
+        text: 'Non',
+        icon: 'close',
+        role: 'cancel',
+      }]
+    });
+    await actionSheet.present();
+  };
+
+  async select(url, name) { //trigger sur clic et gestion de tous les cas particuliers
+    const audio = new Audio('../../assets/sounds/persos/' + name + '.wav');
+    const player = '../' + url;
+    let end;
+    if (name === 'Valentin') {
+      end = ' ? Attention il s\'agit du pire perso du jeu';
     } else {
-      if (player === this.glob.getPic1()) {
+      end = ' ?';
+    }
+
+    if (this.glob.getPic1() === '../../../assets/pics/sprites_choix/point_interrogation.png') //si pic1 est indéfinie
+    {
+      this.action(1, player, name, end, audio);
+    } else {
+      if (player === this.glob.getPic1()) {//sinon si pic1 = sélection
         this.error = 'Merci de choisir des perso. différents';
       } else {
-        if (this.glob.getPic2() === '../../../assets/pics/sprites_choix/point_interrogation.png') {
-          actionSheet = await this.actionSheetController.create({
-            header: 'Choisir ' + name + ' pour ' + this.glob.getNick2() + end,
-            buttons: [{
-              text: 'Oui',
-              role: 'destructive',
-              icon: 'game-controller',
-              handler: () => {
-                audio.play();
-                this.glob.setPic2(player);
-                this.glob.setChoix2(name);
-                this.setGlow();
-                this.red = true;
-                this.error = '';
-              }
-            }, {
-              text: 'Non',
-              icon: 'close',
-              role: 'cancel',
-            }]
-          });
-        } else {
+        if (this.glob.getPic2() === '../../../assets/pics/sprites_choix/point_interrogation.png') { //sinon si pic2 inféfinie
+          this.action(2, player, name, end, audio);
+        } else { //dernière possibilité : si les 2 sont déjà sélectionnés et qu'on en resélectionne un
           this.error = 'Vous avez déjà choisi 2 perso.';
         }
       }
     }
-    await actionSheet.present();
   }
 }
 

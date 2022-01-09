@@ -18,8 +18,6 @@ export class MorpionComponent implements OnInit, AfterViewInit{
   public output; //output des messages de la machine
   public loop=[]; //confettis
   public turn=0; //compteur de tours
-  public scoreP1=0;
-  public scoreP2=0;
   public matrix= //plateau de jeu
     [
       [0,0,0],
@@ -27,7 +25,6 @@ export class MorpionComponent implements OnInit, AfterViewInit{
       [0,0,0]
     ];
   public sonChargement = new Audio('../../assets/sounds/annonceur/entrée/entrée.wav');
-  public draw = new Audio();
 
   constructor(
     private glob: GlobalVarsService,
@@ -115,8 +112,7 @@ export class MorpionComponent implements OnInit, AfterViewInit{
     this.turn+=1;
     if(this.turn===9){ //en cas de draw
       this.output=this.text.getRandomDraw();
-      this.draw.src=this.sounds.getRandomDraw();
-      this.draw.play();
+      this.sounds.getDraw().play();
       this.switchGlow();
     }
   };
@@ -151,11 +147,11 @@ export class MorpionComponent implements OnInit, AfterViewInit{
       this.sounds.getWin().play();
       if(this.glob.getWin()===1){
         this.output=this.text.getRandomEnd(this.glob.getNick1(), this.glob.getNick2());
-        this.scoreP1+=1;
+        this.glob.incrementScore1();
       }
       else{
         this.output=this.text.getRandomEnd(this.glob.getNick2(), this.glob.getNick1());
-        this.scoreP2+=1;
+        this.glob.incrementScore2();
       }
     }
     return tmp;
@@ -173,6 +169,5 @@ export class MorpionComponent implements OnInit, AfterViewInit{
       ];
     this.glob.setWin(0);
     this.turn=0;
-    this.draw.src='';
   };
 }

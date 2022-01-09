@@ -3,17 +3,19 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class GlobalVarsService {
+export class GlobalVarsService { //toutes les variables à transférer d'une page à une autre (c'était l'idée à la base mais je crois que j'ai débordé un peu et que j'ai mis des trucs qui devraient pas y être)
 
   public pic1='../../../assets/pics/sprites_choix/point_interrogation.png';
   public pic2='../../../assets/pics/sprites_choix/point_interrogation.png';
   public choix1='';
   public choix2='';
-  public nick1='a';
-  public nick2='b';
+  public nick1='';
+  public nick2='';
   public win=0;
+  public score1=0;
+  public score2=0;
 
-  constructor() {}
+  constructor() {} //getters et setters avec en plus quelques resets
 
   getPic1=()=>this.pic1;
   setPic1=(replace)=>this.pic1=replace;
@@ -45,4 +47,10 @@ export class GlobalVarsService {
   getChoix2=()=>this.choix2;
   setChoix2=(replace)=>this.choix2=replace;
   resetChoix2=()=>this.choix2='';
+
+  getScore1=()=>this.score1;
+  incrementScore1=()=>this.score1+=1;
+
+  getScore2=()=>this.score2;
+  incrementScore2=()=>this.score2+=1;
 }

@@ -19,7 +19,7 @@ export class Tab1Page{
     public sound: MusicService,
   ){}
 
-  switch=(val)=>{
+  switch=(val)=>{ //toggle pour les components
     this.tab=val;
   };
 }
