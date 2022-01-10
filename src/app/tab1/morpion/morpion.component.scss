@@ -56,6 +56,16 @@ p{
   filter: drop-shadow(0 0 0.75rem rgb(243, 153, 24));
 }
 
+#valentinWin{
+  width:500px;
+  height:212px;
+}
+
+#valentinLose{
+  width:640px;
+  height:360px;
+}
+
 .wrapper {
   position: absolute;
   min-height: 100vh;

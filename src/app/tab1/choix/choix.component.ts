@@ -104,7 +104,6 @@ export class ChoixComponent implements OnInit, AfterViewInit {
   };
 
   async action(turn, player, name, end, audio) {
-    console.log('action');
     const actionSheet = await this.actionSheetController.create({
       header: 'Choisir ' + name + ' pour ' + this.glob.getNick2() + end,
       buttons: [{
@@ -136,37 +135,29 @@ export class ChoixComponent implements OnInit, AfterViewInit {
     const audio = new Audio('../../assets/sounds/persos/' + name + '.wav');
     const player = '../' + url;
     let end = ' ?';
-    console.log('player :', player);
-    console.log('name :', name);
+
     if (name === 'Valentin') {
       end += ' Attention il s\'agit du pire perso du jeu';
-      console.log('Valentin');
     } else {
       if (name === 'Paul') {
         end += ' Excellent choix, c\'est le meilleur perso du jeu';
-        console.log('Pas Valentin');
       }
-      console.log('on  est là');
-      if (this.glob.getPic1() === '../../../assets/pics/sprites_choix/point_interrogation.png') //si pic1 est indéfinie
-      {
-        console.log('déf p1');
-        this.action(1, player, name, end, audio);
+    }
+
+    if (this.glob.getPic1() === '../../../assets/pics/sprites_choix/point_interrogation.png') //si pic1 est indéfinie
+    {
+      this.action(1, player, name, end, audio);
+    } else {
+      if (player === this.glob.getPic1()) {//sinon si pic1 = sélection
+        this.error = 'Merci de choisir des perso. différents';
       } else {
-        if (player === this.glob.getPic1()) {//sinon si pic1 = sélection
-          console.log('p1 = p2');
-          this.error = 'Merci de choisir des perso. différents';
-        } else {
-          if (this.glob.getPic2() === '../../../assets/pics/sprites_choix/point_interrogation.png') { //sinon si pic2 inféfinie
-            console.log('déf p2');
-            this.action(2, player, name, end, audio);
-          } else { //dernière possibilité : si les 2 sont déjà sélectionnés et qu'on en resélectionne un
-            console.log('le reste');
-            this.error = 'Vous avez déjà choisi 2 perso.';
-          }
+        if (this.glob.getPic2() === '../../../assets/pics/sprites_choix/point_interrogation.png') { //sinon si pic2 inféfinie
+          this.action(2, player, name, end, audio);
+        } else { //dernière possibilité : si les 2 sont déjà sélectionnés et qu'on en resélectionne un
+          this.error = 'Vous avez déjà choisi 2 perso.';
         }
       }
     }
-    console.log('fin');
   }
 }
 
