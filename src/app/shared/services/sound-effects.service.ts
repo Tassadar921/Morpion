@@ -20,7 +20,10 @@ export class SoundEffectsService {
 
   getDraw=()=>this.audioDraw;
 
-  getRandomFelicitation=()=>this.félicitations[Math.floor(Math.random()*this.félicitations.length)][0]; //on return le son avec sa source, qui est choisie aléatoirement mais du coup c'est pas implémenté
+  getRandomFelicitation=()=>{//on return le son avec sa source, qui est choisie aléatoirement parmi la liste
+    this.audioFélicitations.src=this.félicitations[Math.floor(Math.random()*this.félicitations.length)][0];
+    return this.audioFélicitations;
+  };
 
   getWin=()=>this.audioWin;
 }
