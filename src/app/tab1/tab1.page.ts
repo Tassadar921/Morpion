@@ -1,4 +1,5 @@
 import { Component} from '@angular/core';
+import {ActionSheetController} from '@ionic/angular';
 
 import { GlobalVarsService } from '../shared/services/global-vars.service';
 import { MusicService} from '../shared/services/music.service';
@@ -17,15 +18,31 @@ export class Tab1Page{
   constructor(
     public glob: GlobalVarsService,
     public sound: MusicService,
+    public actionSheetController: ActionSheetController,
   ){}
 
   switch=(val)=>{ //toggle pour les components
     this.tab=val;
   };
 
-  reinit=()=>{
-    this.tab=1;
-    this.glob.reinit();
+  async reinit(){
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Sûr de changer de joueurs ?',
+      buttons: [{
+        text: 'Oui',
+        role: 'destructive',
+        icon: 'game-controller',
+        handler: () => {
+          this.tab=1;
+          this.glob.reinit();
+        }
+      }, {
+        text: 'Non',
+        icon: 'close',
+        role: 'cancel',
+      }]
+    });
+    await actionSheet.present();
   };
 
 }
