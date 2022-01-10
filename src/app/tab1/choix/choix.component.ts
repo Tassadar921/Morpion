@@ -143,12 +143,13 @@ export class ChoixComponent implements OnInit, AfterViewInit {
   async select(url, name) { //trigger sur clic et gestion de tous les cas particuliers
     const audio = new Audio('../../assets/sounds/persos/' + name + '.wav');
     const player = '../' + url;
-    let end;
+    let end=' ?';
     if (name === 'Valentin') {
-      end = ' ? Attention il s\'agit du pire perso du jeu';
-    } else {
-      end = ' ?';
-    }
+      end += ' Attention il s\'agit du pire perso du jeu';
+    } else{
+      if(name==='Paul'){
+        end+=' Excellent choix, c\'est le meilleur perso du jeu';
+      }
 
     if (this.glob.getPic1() === '../../../assets/pics/sprites_choix/point_interrogation.png') //si pic1 est indéfinie
     {
