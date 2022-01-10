@@ -18,6 +18,8 @@ export class MorpionComponent implements OnInit, AfterViewInit{
   public output; //output des messages de la machine
   public loop=[]; //confettis
   public turn=0; //compteur de tours
+  public valentinDefaite=0;
+  public valentinWin=0;
   public matrix= //plateau de jeu
     [
       [0,0,0],
@@ -179,5 +181,7 @@ export class MorpionComponent implements OnInit, AfterViewInit{
       ];
     this.glob.setWin(0);
     this.turn=0;
+    this.valentinDefaite=0;
+    this.valentinWin=0;
   };
 }

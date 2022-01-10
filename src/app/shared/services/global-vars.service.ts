@@ -9,8 +9,8 @@ export class GlobalVarsService { //toutes les variables à transférer d'une pag
   public pic2='../../../assets/pics/sprites_choix/point_interrogation.png';
   public choix1='';
   public choix2='';
-  public nick1='';
-  public nick2='';
+  public nick1='a';
+  public nick2='b';
   public win=0;
   public score1=0;
   public score2=0;

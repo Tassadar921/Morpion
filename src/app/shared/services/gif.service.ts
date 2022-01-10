@@ -16,5 +16,4 @@ export class GifService {
 
   getVictoire=()=>this.victoire[Math.floor(Math.random()*this.victoire.length)][0];
   getDefaite=()=>this.defaite;
-
 }
