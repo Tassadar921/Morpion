@@ -105,7 +105,7 @@ export class ChoixComponent implements OnInit, AfterViewInit {
 
   async action(turn, player, name, end, audio) {
     const actionSheet = await this.actionSheetController.create({
-      header: 'Choisir ' + name + ' pour ' + this.glob.getNick2() + end,
+      header: 'Choisir ' + name + ' pour ' + end,
       buttons: [{
         text: 'Oui',
         role: 'destructive',
@@ -134,24 +134,27 @@ export class ChoixComponent implements OnInit, AfterViewInit {
   async select(url, name) { //trigger sur clic et gestion de tous les cas particuliers
     const audio = new Audio('./assets/sounds/persos/' + name + '.wav');
     const player = url;
-    let end = ' ?';
+    let tmp = ' ?';
+    let end='';
 
     if (name === 'Valentin') {
-      end += ' Attention il s\'agit du pire perso du jeu';
+      tmp += ' Attention il s\'agit du pire perso du jeu';
     } else {
       if (name === 'Paul') {
-        end += ' Excellent choix, c\'est le meilleur perso du jeu';
+        tmp += ' Excellent choix, c\'est le meilleur perso du jeu';
       }
     }
 
     if (this.glob.getPic1() === './assets/pics/sprites_choix/point_interrogation.png') //si pic1 est indéfinie
     {
+      end+=this.glob.getNick1()+tmp;
       this.action(1, player, name, end, audio);
     } else {
       if (player === this.glob.getPic1()) {//sinon si pic1 = sélection
         this.error = 'Merci de choisir des perso. différents';
       } else {
         if (this.glob.getPic2() === './assets/pics/sprites_choix/point_interrogation.png') { //sinon si pic2 inféfinie
+          end+=this.glob.getNick2()+tmp;
           this.action(2, player, name, end, audio);
         } else { //dernière possibilité : si les 2 sont déjà sélectionnés et qu'on en resélectionne un
           this.error = 'Vous avez déjà choisi 2 perso.';
