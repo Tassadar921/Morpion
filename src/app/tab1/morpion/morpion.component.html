@@ -1,4 +1,4 @@
-<div *ngIf="(this.glob.getPic1()!=='../../../assets/pics/sprites_choix/point_interrogation.png') && (this.glob.getPic2()!=='../../../assets/pics/sprites_choix/point_interrogation.png')">
+<div *ngIf="(this.glob.getPic1()!=='./assets/pics/sprites_choix/point_interrogation.png') && (this.glob.getPic2()!=='../../../assets/pics/sprites_choix/point_interrogation.png')">
 
   <div style="margin-top:20px;">
     <ion-button shape="round" (click)="reset()">Reset</ion-button>
@@ -29,12 +29,12 @@
 
 </div>
 
-<div *ngIf="(this.glob.getPic1()==='../../../assets/pics/sprites_choix/point_interrogation.png') || (this.glob.getPic2()==='../../../assets/pics/sprites_choix/point_interrogation.png')">
+<div *ngIf="(this.glob.getPic1()==='./assets/pics/sprites_choix/point_interrogation.png') || (this.glob.getPic2()==='./assets/pics/sprites_choix/point_interrogation.png')">
   <p>Veuillez choisir des personnages</p>
 </div>
 
-<img id="valentinWin" src="../../../assets/gif/victoire.gif" *ngIf="(glob.getChoix1()==='Valentin'&&this.glob.getWin()===1)||(glob.getChoix2()==='Valentin'&&this.glob.getWin()===2)">
-<img id="valentinLose" src="../../../assets/gif/défaite.gif" *ngIf="(glob.getChoix1()==='Valentin'&&this.glob.getWin()===2)||(glob.getChoix2()==='Valentin'&&this.glob.getWin()===1)">
+<img id="valentinWin" src="./assets/gif/victoire.gif" *ngIf="(glob.getChoix1()==='Valentin'&&this.glob.getWin()===1)||(glob.getChoix2()==='Valentin'&&this.glob.getWin()===2)">
+<img id="valentinLose" src="./assets/gif/défaite.gif" *ngIf="(glob.getChoix1()==='Valentin'&&this.glob.getWin()===2)||(glob.getChoix2()==='Valentin'&&this.glob.getWin()===1)">
 
 <div *ngIf="win.length!==0">
   <div *ngFor="let element of loop" class="wrapper">

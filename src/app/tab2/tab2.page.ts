@@ -12,9 +12,9 @@ export class Tab2Page {
 
   function() {
 
-    let observableObject = new Observable();
+    const observableObject = new Observable();
 
-    let winCallback = function(player) {
+    const winCallback = function(player) {
       console.log('Player', player, 'win !');
     }
 

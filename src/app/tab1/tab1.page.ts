@@ -18,7 +18,7 @@ export class Tab1Page{
   constructor(
     public glob: GlobalVarsService,
     public sound: MusicService,
-    public actionSheetController: ActionSheetController,
+    private actionSheetController: ActionSheetController,
   ){}
 
   switch=(val)=>{ //toggle pour les components

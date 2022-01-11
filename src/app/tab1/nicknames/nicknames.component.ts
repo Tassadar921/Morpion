@@ -13,7 +13,7 @@ export class NicknamesComponent implements OnInit {
   public error;
 
   constructor(
-    private glob: GlobalVarsService,
+    public glob: GlobalVarsService,
   ) {}
 
   ngOnInit() {}

@@ -16,11 +16,11 @@ export class ChoixComponent implements OnInit, AfterViewInit {
   public glow;
   public count = 0;
   public input = '';
-  public sonChargement = new Audio('../../assets/sounds/annonceur/choisir.wav');
+  public sonChargement = new Audio('./assets/sounds/annonceur/choisir.wav');
 
   constructor(
     private data: PersonnagesService,
-    private glob: GlobalVarsService,
+    public glob: GlobalVarsService,
     private actionSheetController: ActionSheetController,
   ) {
   }
@@ -83,8 +83,8 @@ export class ChoixComponent implements OnInit, AfterViewInit {
   }
 
   reinit = () => { //on supprime le choix des perso
-    this.glob.setPic1('../../../assets/pics/sprites_choix/point_interrogation.png');
-    this.glob.setPic2('../../../assets/pics/sprites_choix/point_interrogation.png');
+    this.glob.setPic1('./assets/pics/sprites_choix/point_interrogation.png');
+    this.glob.setPic2('./assets/pics/sprites_choix/point_interrogation.png');
     this.glob.resetChoix1();
     this.glob.resetChoix2();
     this.setGlow();
@@ -132,8 +132,8 @@ export class ChoixComponent implements OnInit, AfterViewInit {
   };
 
   async select(url, name) { //trigger sur clic et gestion de tous les cas particuliers
-    const audio = new Audio('../../assets/sounds/persos/' + name + '.wav');
-    const player = '../' + url;
+    const audio = new Audio('./assets/sounds/persos/' + name + '.wav');
+    const player = url;
     let end = ' ?';
 
     if (name === 'Valentin') {
@@ -144,14 +144,14 @@ export class ChoixComponent implements OnInit, AfterViewInit {
       }
     }
 
-    if (this.glob.getPic1() === '../../../assets/pics/sprites_choix/point_interrogation.png') //si pic1 est indéfinie
+    if (this.glob.getPic1() === './assets/pics/sprites_choix/point_interrogation.png') //si pic1 est indéfinie
     {
       this.action(1, player, name, end, audio);
     } else {
       if (player === this.glob.getPic1()) {//sinon si pic1 = sélection
         this.error = 'Merci de choisir des perso. différents';
       } else {
-        if (this.glob.getPic2() === '../../../assets/pics/sprites_choix/point_interrogation.png') { //sinon si pic2 inféfinie
+        if (this.glob.getPic2() === './assets/pics/sprites_choix/point_interrogation.png') { //sinon si pic2 inféfinie
           this.action(2, player, name, end, audio);
         } else { //dernière possibilité : si les 2 sont déjà sélectionnés et qu'on en resélectionne un
           this.error = 'Vous avez déjà choisi 2 perso.';

@@ -11,7 +11,7 @@ export class Tab3Page {
   constructor() {}
 
   redirect=()=>{
-    window.open('../../assets/redirect/test.html');
+    window.open('./assets/redirect/test.html');
   };
 
 }

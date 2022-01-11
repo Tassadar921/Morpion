@@ -94,7 +94,7 @@ export class PersonnagesService {
     if(this.data.length===0) {
       this.names.sort();
       for (const name of this.names) {
-        this.data.push(new Perso(name, '../../assets/pics/sprites_choix/' + name + '.png'));
+        this.data.push(new Perso(name, './assets/pics/sprites_choix/' + name + '.png'));
       }
     }
     return this.data;

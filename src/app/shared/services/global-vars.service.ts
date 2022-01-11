@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class GlobalVarsService { //toutes les variables à transférer d'une page à une autre (c'était l'idée à la base mais je crois que j'ai débordé un peu et que j'ai mis des trucs qui devraient pas y être)
 
-  public pic1='../../../assets/pics/sprites_choix/point_interrogation.png';
-  public pic2='../../../assets/pics/sprites_choix/point_interrogation.png';
+  public pic1='./assets/pics/sprites_choix/point_interrogation.png';
+  public pic2='./assets/pics/sprites_choix/point_interrogation.png';
   public choix1='';
   public choix2='';
-  public nick1='a';
-  public nick2='b';
+  public nick1='';
+  public nick2='';
   public win=0;
   public score1=0;
   public score2=0;
@@ -20,14 +20,14 @@ export class GlobalVarsService { //toutes les variables à transférer d'une pag
   getPic1=()=>this.pic1;
   setPic1=(replace)=>this.pic1=replace;
   resetPic1=()=>{
-    this.pic1='../../../assets/pics/sprites_choix/point_interrogation.png';
+    this.pic1='./assets/pics/sprites_choix/point_interrogation.png';
     this.choix1='';
   };
 
   getPic2=()=>this.pic2;
   setPic2=(replace)=>this.pic2=replace
   resetPic2=()=>{
-    this.pic2='../../../assets/pics/sprites_choix/point_interrogation.png';
+    this.pic2='./assets/pics/sprites_choix/point_interrogation.png';
     this.choix2='';
   };
 
@@ -55,8 +55,8 @@ export class GlobalVarsService { //toutes les variables à transférer d'une pag
   incrementScore2=()=>this.score2+=1;
 
   reinit=()=>{
-    this.pic1='../../../assets/pics/sprites_choix/point_interrogation.png';
-    this.pic2='../../../assets/pics/sprites_choix/point_interrogation.png';
+    this.pic1='./assets/pics/sprites_choix/point_interrogation.png';
+    this.pic2='./assets/pics/sprites_choix/point_interrogation.png';
     this.choix1='';
     this.choix2='';
     this.nick1='';

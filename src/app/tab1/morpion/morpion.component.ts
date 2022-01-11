@@ -26,19 +26,19 @@ export class MorpionComponent implements OnInit, AfterViewInit {
       [0, 0, 0],
       [0, 0, 0]
     ];
-  public sonChargement = new Audio('../../assets/sounds/annonceur/entrée/entrée.wav');
+  public sonChargement = new Audio('./assets/sounds/annonceur/entrée/entrée.wav');
 
   constructor(
-    private glob: GlobalVarsService,
+    public glob: GlobalVarsService,
     private text: TextService,
-    private sounds: SoundEffectsService,
+    public sounds: SoundEffectsService,
   ) {
     this.p1 = new Player('1', this.glob.getNick1(), this.glob.getPic1());
     this.p2 = new Player('2', this.glob.getNick2(), this.glob.getPic2());
   }
 
   ngOnInit() {
-    if (this.glob.getPic1() !== '../../../assets/pics/sprites_choix/point_interrogation.png' && this.glob.getPic2() !== '../../../assets/pics/sprites_choix/point_interrogation.png') {
+    if (this.glob.getPic1() !== './assets/pics/sprites_choix/point_interrogation.png' && this.glob.getPic2() !== './assets/pics/sprites_choix/point_interrogation.png') {
       this.sonChargement.play();
     }
     this.firstPlayer();
@@ -48,25 +48,25 @@ export class MorpionComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() { //après le chargement complet du HTML pour effet glow
-    if (this.glob.getPic1() !== '../../../assets/pics/sprites_choix/point_interrogation.png' && this.glob.getPic2() !== '../../../assets/pics/sprites_choix/point_interrogation.png') {
+    if (this.glob.getPic1() !== './assets/pics/sprites_choix/point_interrogation.png' && this.glob.getPic2() !== './assets/pics/sprites_choix/point_interrogation.png') {
       this.firstPlayerSprite();
     }
   }
 
   firstPlayer = () => { //aléatoire entre les 2 joueurs sauf si l'un a choisi Valentin, auquel cas il commencera jamais
-    if (this.glob.getPic1() !== '../../../assets/pics/sprites_choix/Valentin.png' && this.glob.getPic2() !== '../../../assets/pics/sprites_choix/Valentin.png' && this.glob.getPic1() !== '../../../assets/pics/sprites_choix/Paul.png' && this.glob.getPic2() !== '../../../assets/pics/sprites_choix/Paul.png') {
+    if (this.glob.getPic1() !== './assets/pics/sprites_choix/Valentin.png' && this.glob.getPic2() !== './assets/pics/sprites_choix/Valentin.png' && this.glob.getPic1() !== './assets/pics/sprites_choix/Paul.png' && this.glob.getPic2() !== './assets/pics/sprites_choix/Paul.png') {
       this.currentPlayer = Math.floor(Math.random() * 2) + 1;
     } else {
-      if (this.glob.getPic1() === '../../../assets/pics/sprites_choix/Valentin.png') { //on triche allègrement ici (Vianney et Nathan ont pas vu cette partie du code donc j'en profite)
+      if (this.glob.getPic1() === './assets/pics/sprites_choix/Valentin.png') { //on triche allègrement ici (Vianney et Nathan ont pas vu cette partie du code donc j'en profite)
         this.currentPlayer = 2;
       } else {
-        if (this.glob.getPic2() === '../../../assets/pics/sprites_choix/Valentin.png') { //pour résumer en gros, si Valentin est sélectionné alors il commencera jamais
+        if (this.glob.getPic2() === './assets/pics/sprites_choix/Valentin.png') { //pour résumer en gros, si Valentin est sélectionné alors il commencera jamais
           this.currentPlayer = 1;
         } else {
-          if (this.glob.getPic1() === '../../../assets/pics/sprites_choix/Paul.png') { //si Paul l'est alors il commencera toujours
+          if (this.glob.getPic1() === './assets/pics/sprites_choix/Paul.png') { //si Paul l'est alors il commencera toujours
             this.currentPlayer = 1;
           } else {
-            if (this.glob.getPic2() === '../../../assets/pics/sprites_choix/Paul.png') { //sinon on fait un aléatoire
+            if (this.glob.getPic2() === './assets/pics/sprites_choix/Paul.png') { //sinon on fait un aléatoire
               this.currentPlayer = 2;
             }
           }

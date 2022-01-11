@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class MusicService { //on gère ici tout ce qui est audio de la bande originale
 
-  public sound = new Audio('../../assets/sounds/music/Lifelight ( English Ver.) - Super Smash Bros. Ultimate Main Theme.mp3');
+  public sound = new Audio('./assets/sounds/music/Lifelight ( English Ver.) - Super Smash Bros. Ultimate Main Theme.mp3');
 
   constructor() {
     this.sound.volume = 0.125;
