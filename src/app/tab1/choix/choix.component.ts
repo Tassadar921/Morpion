@@ -22,8 +22,7 @@ export class ChoixComponent implements OnInit, AfterViewInit {
     private data: PersonnagesService,
     public glob: GlobalVarsService,
     private actionSheetController: ActionSheetController,
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.sonChargement.play();
